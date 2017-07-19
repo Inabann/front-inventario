@@ -35,13 +35,13 @@ export default {
   name: 'Navbar',
   methods: {
     logout(){
-      this.$http.post('/api/Users/logout', {headers:{Authorization : this.$auth.getToken().token }}).then((res) => {
+      this.$http.post('/api/Users/logout?access_token='+ this.$auth.getToken().token).then((res) => {
         this.$auth.destroyToken();
         this.$router.push('/');
       });
     },
     contar(){
-      this.$http.get('/api/Users/count',{headers:{Authorization : this.$auth.getToken().token }  }).then((res) => console.log(res.body));
+      this.$http.get('/api/usuarios/count?access_token='+ this.$auth.getToken().token).then((res) => console.log(res.body));
     }
   }
 };

@@ -53,7 +53,7 @@ export default {
   },
   methods:{
     login(){
-      this.$http.post('/api/Users/login', this.cred).then((res) => {
+      this.$http.post('/api/usuarios/login', this.cred).then((res) => {
         console.log(res);
         this.$auth.setToken(res.body.id, res.body.userId, res.body.created, res.body.ttl);
         this.$router.push('/home');
