@@ -6,7 +6,6 @@
         <div class="column is-2">
           <appMenu></appMenu>
         </div>
-
         <div class="column is-4">
           <cliente></cliente>
         </div>

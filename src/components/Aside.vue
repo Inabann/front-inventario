@@ -1,36 +1,27 @@
 <template>
-	<aside class="menu">
+	<aside class="menu test">
 	  <p class="menu-label">
 	    General
 	  </p>
 	  <ul class="menu-list">
-	    <li><a>Dashboard</a></li>
-	    <li><a>Customers</a></li>
+	    <li ><a>Dashboard</a></li>
+		 <li><a>Reportes</a></li>
 	  </ul>
 	  <p class="menu-label">
-	    Administration
+	    Inventario
 	  </p>
 	  <ul class="menu-list">
-	    <li><a>Team Settings</a></li>
-	    <li>
-	      <a class="is-active">Manage Your Team</a>
-	      <ul>
-	        <li><a>Members</a></li>
-	        <li><a>Plugins</a></li>
-	        <li><a>Add a member</a></li>
-	      </ul>
-	    </li>
-	    <li><a>Invitations</a></li>
-	    <li><a>Cloud Storage Environment Settings</a></li>
-	    <li><a>Authentication</a></li>
+	    <li ><a>Producto</a></li>
+	    <li><a>Stock</a></li>
+	    <li><a>Ingreso</a></li>
 	  </ul>
 	  <p class="menu-label">
-	    Transactions
+	    Ventas
 	  </p>
 	  <ul class="menu-list">
-	    <li><a>Payments</a></li>
-	    <li><a>Transfers</a></li>
-	    <li><a>Balance</a></li>
+	    <li ><a>V</a></li>
+	    <li><a>Stock</a></li>
+	    <li><a>Ingreso</a></li>
 	  </ul>
 	</aside>
 
@@ -52,5 +43,8 @@ export default {
 <style lang="css" scoped>
 aside {
   margin-top: 20px;
+}
+.test {
+	
 }
 </style>

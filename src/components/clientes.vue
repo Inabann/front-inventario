@@ -7,7 +7,7 @@
 
 		<button @click="agregar">click</button>
 		<ul>
-			<li v-for="cliente in clientes"></li>
+			<li v-for="cliente in clientes">{{ cliente.nombre }}</li>
 		</ul>
 	</div>
 </template>
@@ -19,7 +19,7 @@ export default {
 
   data () {
     return {
-    	clientes: '',
+    	clientes: [],
     	nuevo: {
     		dni_ruc: '',
     		nombre:'',
@@ -27,23 +27,26 @@ export default {
     	}
     };
   },
+
   methods:{
     agregar(){
       this.$http.post('/api/Clientes', this.nuevo).then((res) => {
-        console.log(res);
-        this.mostrar();
+        console.log(res.body);
+        this.clientes.push(res.body);
       });
     },
-    mostrar(){
+    getClientes(){
     	this.$http.get('/api/Clientes').then((res) => {
     		this.clientes = res.body;
     	});
     },
-    computed:{
-    	jalar: function () {
-    		// body...
-    	}
-    }
+  },
+  created: function(){
+    let arr = [];
+    this.$http.get('/api/Clientes').then((res) => {
+      arr = res.body;
+      this.clientes = arr;
+    });
   }
 };
 </script>
