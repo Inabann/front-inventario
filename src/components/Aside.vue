@@ -4,7 +4,7 @@
 	    General
 	  </p>
 	  <ul class="menu-list">
-	    <li ><a>Dashboard</a></li>
+	    <li ><a href="/home">Dashboard</a></li>
 		 <li><a>Reportes</a></li>
 	  </ul>
 	  <p class="menu-label">
@@ -19,15 +19,19 @@
 	    Ventas
 	  </p>
 	  <ul class="menu-list">
-	    <li ><a>V</a></li>
+	    <li><a>V</a></li>
 	    <li><a>Stock</a></li>
 	    <li><a>Ingreso</a></li>
+	    <li><a href="/home/clientes">Cliente</a></li>
 	  </ul>
+
+
 	</aside>
 
 </template>
 
 <script>
+
 export default {
 
   name: 'appMenu',

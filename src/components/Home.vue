@@ -6,8 +6,8 @@
         <div class="column is-2">
           <appMenu></appMenu>
         </div>
-        <div class="column is-4">
-          <cliente></cliente>
+        <div class="column is-10">
+          <router-view></router-view>
         </div>
   		</div>
   	</div>
@@ -17,7 +17,6 @@
 <script>
 import Navbar from '@/components/Navbar'
 import appMenu from '@/components/Aside'
-import cliente from '@/components/clientes'
 
 export default {
 
@@ -25,7 +24,6 @@ export default {
   components: {
   	Navbar,
     appMenu,
-    cliente
   }
 };
 </script>
