@@ -1,5 +1,5 @@
 <template>
-	<aside class="menu test">
+	<aside class="menu">
 	  <p class="menu-label">
 	    General
 	  </p>
@@ -19,10 +19,9 @@
 	    Ventas
 	  </p>
 	  <ul class="menu-list">
-	    <li><a>V</a></li>
 	    <li><a>Stock</a></li>
 	    <li><a>Ingreso</a></li>
-	    <li><a href="/home/clientes">Cliente</a></li>
+	    <li><a href="home/clientes">Cliente</a></li>
 	  </ul>
 
 
@@ -45,10 +44,5 @@ export default {
 </script>
 
 <style lang="css" scoped>
-aside {
-  margin-top: 20px;
-}
-.test {
-	
-}
+
 </style>

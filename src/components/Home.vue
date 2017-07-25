@@ -1,16 +1,23 @@
 <template>
   <div>
-  	<Navbar></Navbar>
-    <div class="container">
+    <Navbar></Navbar> 
+    <div class="container" id="main">
       <div class="columns">
         <div class="column is-2">
           <appMenu></appMenu>
         </div>
-        <div class="column is-10">
+        <div class="column">
           <router-view></router-view>
         </div>
-  		</div>
-  	</div>
+        
+      </div>
+    </div>
+    
+    
+</div>
+</div>
+    
+  	
   </div>
 </template>
 
@@ -28,6 +35,12 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
+.columns:last-child {
+    margin-bottom: 0;
+}
 
+#main {
+  margin-top: 15px;
+}
 </style>

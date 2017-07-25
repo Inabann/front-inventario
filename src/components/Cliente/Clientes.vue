@@ -1,10 +1,8 @@
 <template>
- <div>
-    
     <div class="container">
       <div class="columns">
         <div class="column">
-          <div class="client">
+          <div>
             <h1 class="title is-4"><b>DIRECTORIO DE CLIENTES</b></h1>
 
             <a class="button is-primary is-outlined">
@@ -64,7 +62,6 @@
         </div>
       </div>
     </div>
-  </div>
 	
 </template>
 

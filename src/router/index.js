@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
-import Cliente from '@/components/clientes'
-import Reportes from '@/components/Reportes'
+import Cliente from '@/components/Cliente/Clientes'
+import Reportes from '@/components/Reporte/Reportes'
 
 
 Vue.use(Router)
