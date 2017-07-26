@@ -6,7 +6,7 @@
          <h1 class="title is-4"><b>Registrar Producto</b></h1>
          <div class="column is-4">
               <div class="field is-horizontal">
- 
+                  <!-- no se puede poner un dropdown botton en vez de un input??? -->
              		 <label class="label">Color ID</label>
 		              <div class="control">
 		                <input class="input" type="text" >
@@ -16,6 +16,7 @@
              		 <div class="control">
 						  <div class="select">
 						    <select>
+                  <!-- Lo que debe guardar en la base de datos es el codigo del color, marca; aca esta capturando el nombre -->
 						      <option v-for="color in colores" v-bind:value="color.nombre">{{color.nombre}}</option>
 						    </select>
 						  </div>
@@ -150,7 +151,7 @@
 export default {
 
   name: 'producto',
-
+  //hay q separar por componentes porq faltan varias funciones y demas weas :v
   data () {
     return {
     	marcas2: [],
