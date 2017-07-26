@@ -11,7 +11,7 @@
 	    Inventario
 	  </p>
 	  <ul class="menu-list">
-	    <li ><a>Producto</a></li>
+	    <li ><a href="home/productos">Producto</a></li>
 	    <li><a>Stock</a></li>
 	    <li><a>Ingreso</a></li>
 	  </ul>

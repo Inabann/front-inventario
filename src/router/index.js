@@ -4,6 +4,8 @@ import Login from '@/components/Login'
 import Home from '@/components/Home'
 import Cliente from '@/components/Cliente/Clientes'
 import Reportes from '@/components/Reporte/Reportes'
+import Producto from '@/components/Producto/Productos'
+import Prueba from '@/components/Producto/Prueba'
 
 
 Vue.use(Router)
@@ -35,6 +37,14 @@ export default new Router({
         {
           path: 'reportes',
           component: Reportes
+        },
+        {
+          path: 'productos',
+          component: Producto
+        },
+        {
+          path: 'prueba',
+          component: Prueba
         }
       ]
     },
@@ -44,3 +54,4 @@ export default new Router({
     }
   ]
 })
+
