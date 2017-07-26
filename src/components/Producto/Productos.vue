@@ -1,7 +1,8 @@
 <template>
     <div class="container">
       <div class="columns">
-        <div class="column">           
+        <div class="column"> 
+        <h1 class="title is-1"><b>SEPARA POR COMPONENTES!!! >:v</b></h1>          
          <h1 class="title is-4"><b>Registrar Producto</b></h1>
          <div class="column is-4">
               <div class="field is-horizontal">
@@ -13,9 +14,9 @@
 
              		 <label class="label">Selecciona</label>
              		 <div class="control">
-						  <div v.model="marcas" class="select">
+						  <div class="select">
 						    <select>
-						      <option ></option>
+						      <option v-for="color in colores" v-bind:value="color.nombre">{{color.nombre}}</option>
 						    </select>
 						  </div>
 						</div>
@@ -154,6 +155,8 @@ export default {
     return {
     	marcas2: [],
     	marcas: [],
+      colores: [],
+      color: '',
     	nuevo: {
     		dni_ruc: '',
     		nombre:'',
@@ -189,6 +192,11 @@ export default {
     this.$http.get('/api/Marcas').then((res) => {
       arraymarca = res.body;
       this.marcas = arraymarca;
+    });
+    this.$http.get('/api/Colors').then((res) => {
+      let vm = this
+      console.log(res)
+      vm.colores = res.body
     });
   }
 
