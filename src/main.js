@@ -5,12 +5,13 @@ import App from './App'
 import router from './router'
 import vueResource from 'vue-resource'
 import Auth from './services/Auth.js'
-
+import vueMoment from 'vue-moment'
 
 Vue.config.productionTip = false
 
 Vue.use(vueResource)
 Vue.use(Auth)
+Vue.use(vueMoment)
 
 router.beforeEach(
 	(to, from, next) => {

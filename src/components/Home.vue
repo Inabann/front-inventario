@@ -6,7 +6,7 @@
         <div class="column is-2 is-desktop">
           <appMenu></appMenu>
         </div>
-        <div class="column" id="appBody">
+        <div class="column is-10" id="appBody">
           <router-view></router-view>
         </div>
         
