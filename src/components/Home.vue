@@ -3,10 +3,10 @@
     <Navbar></Navbar> 
     <div class="container" id="main">
       <div class="columns">
-        <div class="column is-2">
+        <div class="column is-2 is-desktop">
           <appMenu></appMenu>
         </div>
-        <div class="column">
+        <div class="column" id="appBody">
           <router-view></router-view>
         </div>
         
@@ -42,5 +42,10 @@ export default {
 
 #main {
   margin-top: 15px;
+
+}
+
+#appBody {
+   margin-right: 20px;
 }
 </style>

@@ -3,7 +3,7 @@
   <div class="container">
     <div class="nav-left">
       <a class="nav-item is-tab is-hidden-mobile is-active">Home</a>
-      <a class="nav-item is-tab is-hidden-mobile" @click="contar()">Features</a>
+      <a class="nav-item is-tab is-hidden-mobile">Features</a>
       <a class="nav-item is-tab is-hidden-mobile">Pricing</a>
       <a class="nav-item is-tab is-hidden-mobile">About</a>
     </div>
@@ -39,9 +39,6 @@ export default {
         this.$auth.destroyToken();
         this.$router.push('/');
       });
-    },
-    contar(){
-      this.$http.get('/api/usuarios/count?access_token='+ this.$auth.getToken().token).then((res) => console.log(res.body));
     }
   }
 };

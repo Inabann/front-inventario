@@ -91,7 +91,8 @@ export default {
     },
     getClientes(){
       this.$http.get('/api/Clientes').then((res) => {
-        this.clientes = res.body;
+        let vm = this;
+        vm.clientes = res.body;
       });
     },
     eliminar(cliente){
@@ -104,11 +105,7 @@ export default {
    
   },
   created: function(){
-    let arr = [];
-    this.$http.get('/api/Clientes').then((res) => {
-      arr = res.body;
-      this.clientes = arr;
-    });
+    this.getClientes();
   }
 };
 </script>

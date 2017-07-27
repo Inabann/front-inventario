@@ -6,17 +6,14 @@ import router from './router'
 import vueResource from 'vue-resource'
 import Auth from './services/Auth.js'
 
+
 Vue.config.productionTip = false
 
 Vue.use(vueResource)
-
 Vue.use(Auth)
 
 router.beforeEach(
 	(to, from, next) => {
-		console.log(Vue.auth.getToken());
-		console.log(Vue.auth.isAuthd());
-		
 		if(to.matched.some(record => record.meta.forVisitors)) {
 			if(Vue.auth.isAuthd()){
 				if(to.path !== '/home'){
@@ -29,8 +26,6 @@ router.beforeEach(
 		} else {
 			next()
 		}
-
-
 		if(to.matched.some(record => record.meta.forAuth)) {
 			if(!Vue.auth.isAuthd()){
 				if(to.path !== '/'){

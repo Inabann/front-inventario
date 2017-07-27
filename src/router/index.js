@@ -5,7 +5,7 @@ import Home from '@/components/Home'
 import Cliente from '@/components/Cliente/Clientes'
 import Reportes from '@/components/Reporte/Reportes'
 import Producto from '@/components/Producto/Productos'
-import Prueba from '@/components/Producto/Prueba'
+import RegistrarProducto from '@/components/Producto/Registrar'
 
 
 Vue.use(Router)
@@ -43,8 +43,8 @@ export default new Router({
           component: Producto
         },
         {
-          path: 'prueba',
-          component: Prueba
+          path: 'registrar_producto',
+          component: RegistrarProducto
         }
       ]
     },

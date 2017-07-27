@@ -1,19 +1,19 @@
 <template>
-	<aside class="menu">
+	<aside class="menu is-hidden-mobile">
 	  <p class="menu-label">
 	    General
 	  </p>
 	  <ul class="menu-list">
-	    <li ><a href="/home">Dashboard</a></li>
+	    <router-link :to="{ path: '/home' }" tag="li" replace><a>Dashboard</a></router-link>
 		 <li><a>Reportes</a></li>
 	  </ul>
 	  <p class="menu-label">
 	    Inventario
 	  </p>
 	  <ul class="menu-list">
-	    <li ><a href="home/productos">Producto</a></li>
+	    <li ><router-link :to="{ path: '/home/productos'} " replace>Producto</router-link></li>
 	    <li><a>Stock</a></li>
-	    <li><a>Ingreso</a></li>
+	    <li><router-link :to="{ path: '/home/registrar_producto'} " replace>Ingresar</router-link></li>
 	  </ul>
 	  <p class="menu-label">
 	    Ventas
@@ -21,7 +21,7 @@
 	  <ul class="menu-list">
 	    <li><a>Stock</a></li>
 	    <li><a>Ingreso</a></li>
-	    <li><a href="home/clientes">Cliente</a></li>
+	    <li><router-link :to="{ path: '/home/clientes'} " replace>Cliente</router-link></li>
 	  </ul>
 
 
