@@ -4,39 +4,6 @@
         <div class="column">
           <div>
             <h1 class="title is-4"><b>DIRECTORIO DE CLIENTES</b></h1>
-
-            <a class="button is-primary is-outlined">
-            <span class="icon is-small">
-              <i class="fa fa-user-plus"></i>
-            </span>
-            <span>Nuevo Cliente</span>
-            </a>
-            <br>
-            <br>
-            <div class="column is-4">
-            <div class="field" >
-              <label class="label is-small">DNI / RUC</label>
-              <div class="control">
-                <input class="input" type="text" v-model="nuevo.dni_ruc">
-               
-              </div>
-            </div>
-            <div class="field">
-              <label class="label is-small">Nombre</label>
-              <div class="control">
-                <input class="input" type="text" v-model="nuevo.nombre">
-              </div>
-            </div>
-            <div class="field">
-              <label class="label is-small">Teléfono</label>
-              <div class="control">
-                <input class="input" type="text" v-model="nuevo.telefono">
-              </div>
-            </div>
-              
-            <button class="button is-primary" @click="agregar">Guardar</button>
-            </div>
-
             <table class="table">
               <thead>
                 <tr>
@@ -73,22 +40,11 @@ export default {
 
   data () {
     return {
-    	clientes: [],
-    	nuevo: {
-    		dni_ruc: '',
-    		nombre:'',
-    		telefono:''
-    	}
+    	clientes: []
     };
   },
 
   methods:{
-    agregar(){
-      this.$http.post('/api/Clientes', this.nuevo).then((res) => {
-        console.log(res.body);
-        this.clientes.push(res.body);
-      });
-    },
     getClientes(){
       this.$http.get('/api/Clientes').then((res) => {
         let vm = this;

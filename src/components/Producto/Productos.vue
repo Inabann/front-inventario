@@ -18,13 +18,13 @@
     </thead>
     <tbody>
       <tr v-for="producto in productos">
-        <td>{{ producto.marcas.nombre }}</td>
-        <td>{{ producto.modelos.nombre }}</td>
-        <td>{{ producto.colors.nombre }}</td>
-        <td>{{ producto.tipos.nombre }}</td>
+        <td v-if="producto.marcas">{{ producto.marcas.nombre }}</td>
+        <td v-if="producto.modelos">{{ producto.modelos.nombre }}</td>
+        <td v-if="producto.colors">{{ producto.colors.nombre }}</td>
+        <td v-if="producto.tipos">{{ producto.tipos.nombre }}</td>
         <td>{{ producto.cantidad }}</td>
         <td>{{ producto.precio_uni }}</td>
-        <td>{{ producto.fecha_ingreso | moment("YYYY / MM / DD") }}</td>
+        <td>{{ producto.fecha_ingreso | moment("add","1 days","YYYY / MM / DD") }}</td>
         <td>
           <a class="button is-warning is-small">Editar</a>
           <a class="button is-danger is-small" @click="remove(producto)" >Eliminar</a>
@@ -55,6 +55,7 @@ export default {
       this.$http.get('/api/Productos?filter[include]=tipos&filter[include]=modelos&filter[include]=colors&filter[include]=modelos&filter[include]=marcas').then((res) => {
         let vm = this
         vm.productos = res.body
+        console.log('hola')
       })
     },
     remove(producto){

@@ -37,7 +37,6 @@
 		  <p class="control" v-if="actions">
 		    <span class="select">
 		      <select v-model="editModelo" @change="onChange">
-		        <option selected>{{ atrib }}</option>
 		        <option v-for="modelo in modelos" :value="modelo">{{ modelo.nombre }}</option>
 		      </select>
 		    </span>

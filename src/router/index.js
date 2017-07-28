@@ -6,6 +6,7 @@ import Cliente from '@/components/Cliente/Clientes'
 import Reportes from '@/components/Reporte/Reportes'
 import Producto from '@/components/Producto/Productos'
 import RegistrarProducto from '@/components/Producto/Registrar'
+import RegistrarCliente from '@/components/Cliente/formcliente'
 
 
 Vue.use(Router)
@@ -33,6 +34,10 @@ export default new Router({
         {
           path: 'clientes',
           component: Cliente
+        },
+        {
+          path: 'registrar_cliente',
+          component: RegistrarCliente
         },
         {
           path: 'reportes',

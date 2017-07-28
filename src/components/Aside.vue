@@ -21,7 +21,14 @@
 	  <ul class="menu-list">
 	    <li><a>Stock</a></li>
 	    <li><a>Ingreso</a></li>
-	    <li><router-link :to="{ path: '/home/clientes'} " replace>Cliente</router-link></li>
+	    
+	  </ul>
+	  <p class="menu-label">
+	  	Cliente
+	  </p>
+	  <ul class="menu-list">
+	  	<li><router-link :to="{ path: '/home/registrar_cliente'} " replace>Nuevo</router-link></li>
+	  	<li><router-link :to="{ path: '/home/clientes'} " replace>Cliente</router-link></li>
 	  </ul>
 
 

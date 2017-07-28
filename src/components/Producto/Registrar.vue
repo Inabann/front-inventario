@@ -53,6 +53,7 @@
 <script>
 import InputModelo from '@/components/Producto/InputModelo'
 
+
 export default {
 
   name: 'RegistrarProducto',
@@ -78,13 +79,12 @@ export default {
         if(res.ok){
           //agregar notificacion de ingreso correcto y de errores
           console.log('producto ingresado');
-        }
-        
+        } 
       });
     }
   }
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
 </style>
