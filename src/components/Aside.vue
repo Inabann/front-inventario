@@ -1,39 +1,36 @@
 <template>
-	<aside class="menu is-hidden-mobile">
-	  <p class="menu-label">
-	    General
-	  </p>
-	  <ul class="menu-list">
-	    <router-link :to="{ path: '/home' }" tag="li" replace><a>Dashboard</a></router-link>
-		 <li><a>Reportes</a></li>
+	<aside class="menu" id="cssaside">
+  <p class="menu-label">
+   <span class="has-text-white">General</span>
+  </p>
+ <ul class="menu-list">
+	    <router-link :to="{ path: '/home' }" tag="li" replace><a><span class="has-text-white">Dashboard</span></a></router-link>
+		 <li><a><span class="has-text-white">Reportes</span></a></li>
 	  </ul>
 	  <p class="menu-label">
-	    Inventario
+	    <span class="has-text-white">Inventario</span>
 	  </p>
 	  <ul class="menu-list">
-	    <li ><router-link :to="{ path: '/home/productos'} " replace>Producto</router-link></li>
-	    <li><a>Stock</a></li>
-	    <li><router-link :to="{ path: '/home/registrar_producto'} " replace>Ingresar</router-link></li>
+	    <li ><router-link :to="{ path: '/home/productos'} " replace><span class="has-text-white">Producto</span></router-link></li>
+	    <li><a><span class="has-text-white">Stock</span></a></li>
+	    <li><router-link :to="{ path: '/home/registrar_producto'} " replace><span class="has-text-white">Ingresar</span></router-link></li>
 	  </ul>
 	  <p class="menu-label">
-	    Ventas
+	    <span class="has-text-white">VENTAS</span>
 	  </p>
 	  <ul class="menu-list">
-	    <li><a>Stock</a></li>
-	    <li><a>Ingreso</a></li>
+	    <li><a><span class="has-text-white">Stock</span></a></li>
+	    <li><a><span class="has-text-white">Ingreso</span></a></li>
 	    
 	  </ul>
 	  <p class="menu-label">
-	  	Cliente
+	  	<span class="has-text-white">Cliente</span>
 	  </p>
 	  <ul class="menu-list">
-	  	<li><router-link :to="{ path: '/home/registrar_cliente'} " replace>Nuevo</router-link></li>
-	  	<li><router-link :to="{ path: '/home/clientes'} " replace>Cliente</router-link></li>
+	  	<li><router-link :to="{ path: '/home/registrar_cliente'} " replace><span class="has-text-white">Nuevo</span></router-link></li>
+	  	<li><router-link :to="{ path: '/home/clientes'} " replace><span class="has-text-white">Clientes</span></router-link></li>
 	  </ul>
-
-
-	</aside>
-
+</aside>
 </template>
 
 <script>
@@ -51,5 +48,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+#cssaside {
+   margin-top: 12px;
+   margin-left: -90px;
+   padding-left: 90px; 
 
+ background-color: #333;
+ /*margin-top: -12px;*/
+
+}
 </style>

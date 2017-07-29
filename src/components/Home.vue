@@ -1,12 +1,12 @@
 <template>
   <div>
+      
     <Navbar></Navbar> 
-    <div class="container" id="main">
-      <div class="columns">
-        <div class="column is-2 is-desktop">
+     
+    <div class="container" >
+      <div class="columns ">
           <appMenu></appMenu>
-        </div>
-        <div class="column is-10" id="appBody">
+        <div class="columns " id="appBody">
           <router-view></router-view>
         </div>
         
@@ -15,10 +15,7 @@
     
     
 </div>
-</div>
-    
-  	
-  </div>
+
 </template>
 
 <script>
@@ -29,7 +26,7 @@ export default {
 
   name: 'Home',
   components: {
-  	Navbar,
+    Navbar,
     appMenu,
   }
 };
@@ -41,11 +38,23 @@ export default {
 }
 
 #main {
-  margin-top: 15px;
+  margin-top: 5px;
 
 }
 
 #appBody {
-   margin-right: 20px;
+   margin-right: 40px;
+   margin-left: 0px;
+   margin-top: 12px;
+
+    border-style: solid;
+    border-color: #ff0000 2px;
+
 }
+#cssAppMenu {
+    background-color: blue;
+
+}
+
+
 </style>

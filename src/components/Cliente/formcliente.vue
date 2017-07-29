@@ -1,7 +1,8 @@
 <template>
-	<div>
+	<div >
 		<h1 class="title is-4"><b>NUEVO CLIENTE</b></h1>
-		<div class="column is-6">
+		<div class="colums">
+			<div class="column">
 			<div class="field" >
 			  <label class="label is-small">DNI / RUC</label>
 			  <div class="control">
@@ -23,6 +24,7 @@
 			</div>
 			<br>
 			<button class="button is-primary" @click="agregar">Guardar</button>
+		</div>
 		</div>
 	</div>
 </template>

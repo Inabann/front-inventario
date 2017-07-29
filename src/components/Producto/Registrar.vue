@@ -76,7 +76,7 @@ export default {
   methods: {
     addProducto(){
       this.$http.post('/api/Productos', this.producto).then((res) => {
-        if(res.ok){
+       if(res.ok){
           //agregar notificacion de ingreso correcto y de errores
           console.log(res.body);
         } 

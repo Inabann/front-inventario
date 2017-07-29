@@ -1,12 +1,12 @@
 <template>
 <div class="container">
-<h1 class="title is-3">Productos Ingresados</h1>
+<h1 class="has-text-centered title"><span class="has-text-info">Productos Ingresados</span></h1>
   <div class="columns">
-    <div class="column is-10">
+    <div class="column">
       <table class="table">
     <thead>
       <tr>
-        <th>Modelo</th>
+         <th>Modelo</th>
         <th>Marca</th>
         <th>Color</th>
         <th>Tipo</th>
@@ -17,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="producto in productos">
+       <tr v-for="producto in productos">
         <td >{{ producto.modelosId }}</td>
         <td >{{ producto.marcasId }}</td>
         <td >{{ producto.colorsId }}</td>
@@ -51,7 +51,7 @@ export default {
     };
   },
   methods:{
-    getProductos(){
+     getProductos(){
       //url con include ?filter[include]=tipos&filter[include]=modelos&filter[include]=colors&filter[include]=modelos&filter[include]=marcas
       this.$http.get('/api/Productos').then((res) => {
         let vm = this
