@@ -4,7 +4,7 @@
 		<div class="field has-addons">
 		  <div class="field-body">
 		  <p class="control" v-if="!actions">
-		    <input class="input" type="text" :placeholder="'Nuevo ' + atrib" v-model="editModelo.nombre">
+		    <input class="input" type="text" v-model="editModelo.nombre">
 		  </p>
 		  <p class="control" v-if="actions">
 		    <a class="button" @click="actions = !actions">
@@ -57,7 +57,12 @@ export default {
     return {
     	actions: true,
     	modelos: [],
-    	editModelo: {}
+    	editModelo: {
+    		nombre: ''
+    	},
+    	newModelo: {
+    		nombre: ''
+    	}
     };
   },
   methods:{
@@ -70,13 +75,14 @@ export default {
     addModelo(){
     	this.$http.post('/api/'+this.atrib, {nombre: this.editModelo.nombre}).then((res)=>{
     		let vm = this;
-    		vm.modelos.push(res.body);
     		vm.editModelo = res.body;
+    		vm.modelos.push(res.body);
+    		vm.$emit('getId', vm.editModelo.nombre);
     		vm.actions = !vm.actions;
     	});
     },
     removeModelo(modelo){
-    	this.$http.delete('/api/'+this.atrib+'/'+modelo.id).then((res) => {
+    	this.$http.delete('/api/'+this.atrib+'/'+modelo.nombre).then((res) => {
         let vm = this
         vm.modelos.splice(vm.modelos.indexOf(modelo), 1)
         vm.actions = !vm.actions
@@ -84,7 +90,7 @@ export default {
       });
     },
     onChange(event){
-    	this.$emit('getId', this.editModelo.id)
+    	this.$emit('getId', this.editModelo.nombre)
     }
   },
   created: function(){

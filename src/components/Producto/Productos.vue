@@ -6,8 +6,8 @@
       <table class="table">
     <thead>
       <tr>
-        <th>Marca</th>
         <th>Modelo</th>
+        <th>Marca</th>
         <th>Color</th>
         <th>Tipo</th>
         <th>Cantidad</th>
@@ -18,10 +18,10 @@
     </thead>
     <tbody>
       <tr v-for="producto in productos">
-        <td v-if="producto.marcas">{{ producto.marcas.nombre }}</td>
-        <td v-if="producto.modelos">{{ producto.modelos.nombre }}</td>
-        <td v-if="producto.colors">{{ producto.colors.nombre }}</td>
-        <td v-if="producto.tipos">{{ producto.tipos.nombre }}</td>
+        <td >{{ producto.modelosId }}</td>
+        <td >{{ producto.marcasId }}</td>
+        <td >{{ producto.colorsId }}</td>
+        <td >{{ producto.tiposId }}</td>
         <td>{{ producto.cantidad }}</td>
         <td>{{ producto.precio_uni }}</td>
         <td>{{ producto.fecha_ingreso | moment("add","1 days","YYYY / MM / DD") }}</td>
@@ -52,10 +52,11 @@ export default {
   },
   methods:{
     getProductos(){
-      this.$http.get('/api/Productos?filter[include]=tipos&filter[include]=modelos&filter[include]=colors&filter[include]=modelos&filter[include]=marcas').then((res) => {
+      //url con include ?filter[include]=tipos&filter[include]=modelos&filter[include]=colors&filter[include]=modelos&filter[include]=marcas
+      this.$http.get('/api/Productos').then((res) => {
         let vm = this
         vm.productos = res.body
-        console.log('hola')
+        console.log(res.body)
       })
     },
     remove(producto){

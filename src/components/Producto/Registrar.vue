@@ -78,7 +78,7 @@ export default {
       this.$http.post('/api/Productos', this.producto).then((res) => {
         if(res.ok){
           //agregar notificacion de ingreso correcto y de errores
-          console.log('producto ingresado');
+          console.log(res.body);
         } 
       });
     }
