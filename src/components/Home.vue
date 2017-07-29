@@ -1,21 +1,20 @@
 <template>
   <div>
-      
     <Navbar></Navbar> 
-     
-    <div class="container" >
       <div class="columns ">
+        <div class="column" id="appmenu">
           <appMenu></appMenu>
-        <div class="columns " id="appBody">
-          <router-view></router-view>
         </div>
-        
+        <div class="column">
+          <div class="columns " id="appBody">
+            <div class="column">
+              <router-view></router-view>
+            </div>
+            
+          </div>
+        </div>
       </div>
-    </div>
-    
-    
-</div>
-
+  </div>
 </template>
 
 <script>
@@ -43,18 +42,19 @@ export default {
 }
 
 #appBody {
-   margin-right: 40px;
+   margin-right: 30px;
    margin-left: 0px;
-   margin-top: 12px;
+   margin-top: 20px;
 
-    border-style: solid;
-    border-color: #ff0000 2px;
-
-}
-#cssAppMenu {
-    background-color: blue;
+    /*border-style: solid;
+    border-color: #ff0000 2px;*/
 
 }
+ #appmenu {
+  background-color: #333;
+  padding-left: 25px;
+  padding-top: 25px; 
+ }
 
 
 </style>

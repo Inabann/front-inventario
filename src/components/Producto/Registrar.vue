@@ -14,10 +14,14 @@
         <label class="label" for="color">Color</label>
        <InputModelo :atrib="'Colors'" @getId="producto.colorsId = $event" id="color"></InputModelo>
      </div>
+     <div class="column is-3">
+        <label for="marca" class="label">Marca</label>
+    <InputModelo :atrib="'Marcas'" @getId="producto.marcasId = $event" id="marca"></InputModelo>
+     </div>
    
     </div> 
-    <label for="marca" class="label">Marca</label>
-    <InputModelo :atrib="'Marcas'" @getId="producto.marcasId = $event" id="marca"></InputModelo>
+    <!-- <label for="marca" class="label">Marca</label>
+    <InputModelo :atrib="'Marcas'" @getId="producto.marcasId = $event" id="marca"></InputModelo> -->
     
     <div class="columns">
       <div class="column is-4">

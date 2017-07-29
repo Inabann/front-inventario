@@ -26,6 +26,8 @@
               </tbody>
             </table>
     <div ><h3>FALTA ACTUALIZA LA TABLA <small> funciona el boton editar :)</small></h3></div>
+            <h3 class="title is-1">EDITAR DEBE IR EN UN MODAL</h3>
+
             <div>
               <h1 class="title is-4"><b>NUEVO CLIENTE</b></h1>
     <div class="column is-6">

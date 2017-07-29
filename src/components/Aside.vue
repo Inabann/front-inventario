@@ -49,9 +49,9 @@ export default {
 
 <style lang="css" scoped>
 #cssaside {
-   margin-top: 12px;
+  /* margin-top: 0px;
    margin-left: -90px;
-   padding-left: 90px; 
+   padding-left: 30px; */
 
  background-color: #333;
  /*margin-top: -12px;*/
