@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import Cliente from '@/components/Cliente/Clientes'
 import Reportes from '@/components/Reporte/Reportes'
 import Producto from '@/components/Producto/Productos'
+import Stock from '@/components/Producto/Stock'
 import RegistrarProducto from '@/components/Producto/Registrar'
 import RegistrarCliente from '@/components/Cliente/formcliente'
 
@@ -50,6 +51,10 @@ export default new Router({
         {
           path: 'registrar_producto',
           component: RegistrarProducto
+        },
+        {
+          path: 'stock',
+          component: Stock
         }
       ]
     },
