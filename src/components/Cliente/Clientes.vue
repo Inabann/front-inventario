@@ -1,7 +1,10 @@
 <template>
     <div class="container">
       <div class="columns">
+      
         <div class="column">
+             <button class="button is-primary is-large" @click="EstadoModal=true"> Nuevo Cliente</button>
+     <modalCliente v-show="EstadoModal" @close="EstadoModal=false"></modalCliente>
           <div>
             <h1 class="title is-4"><b>DIRECTORIO DE CLIENTES</b></h1>
             <table class="table">
@@ -69,21 +72,24 @@
 </template>
 
 <script>
-
+import modalCliente from '@/components/Cliente/modalCliente'
 export default {
 
   name: 'cliente',
- 
+ components: {
+   modalCliente,
+  },
   data () {
     return {
       clientes: [],
     	clientes2: [],
       editCliente:{
-        dni_ruc:'dni_ruc',
-        nombre:'nombre',
-        telefono:'telefono',
+        dni_ruc:'',
+        nombre:'',
+        telefono:'',
         email:''
       },
+      EstadoModal: false
     };
   },
 
@@ -104,15 +110,14 @@ export default {
     editar(cliente){
      let id = cliente.id
       this.$http.get('/api/Clientes/'+id).then((res) => {
-        let vm = this;
-       vm.clientes2 =res.body;
-       this.editCliente = vm.clientes2;
-       console.log(vm.editCliente.id);
+       this.editCliente = res.body;
+
       });
      },
      update(editCliente){
       this.$http.put('/api/Clientes/'+editCliente.id,this.editCliente).then((res) => {
-
+        this.editCliente = {};
+        this.getClientes();
       });
        
      },

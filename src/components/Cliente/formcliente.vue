@@ -23,17 +23,18 @@
 			  </div>
 			</div>
 			<br>
-			<button class="button is-primary" @click="agregar">Guardar</button>
 		</div>
 		</div>
 	</div>
 </template>
 <script>
 
+
+
 export default {
 
-  name: 'RegistrarCliente',
-
+  name: 'formcliente',
+  
   data () {
     return {
     	cliente: {
