@@ -57,15 +57,12 @@
 <script>
 
 
-import formCliente from '@/components/Cliente/formCliente'
 
 
 export default {
 
   name: 'modalcliente2',
-	components: {
-   formCliente
-  },
+
   data () {
     return {
     	cliente: {

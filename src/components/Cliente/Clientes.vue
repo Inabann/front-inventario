@@ -5,6 +5,7 @@
         <div class="column">
              <button class="button is-primary is-large" @click="EstadoModal=true"> Nuevo Cliente</button>
      <modalCliente v-show="EstadoModal" @close="EstadoModal=false"></modalCliente>
+     <editCliente :hola="editCliente" v-show="EstadoModalEdit" @close="EstadoModalEdit=false"></editCliente>
           <div>
             <h1 class="title is-4"><b>DIRECTORIO DE CLIENTES</b></h1>
             <table class="table">
@@ -22,48 +23,15 @@
                   <td>{{ cliente.nombre }}</td>
                   <td>{{ cliente.telefono }}</td>
                   <td>
-                    <a class="button is-warning is-small" @click="editar(cliente)" > Editar</a>
+                    <a class="button is-warning is-small" @click="editar(cliente);EstadoModalEdit=true" > Editar</a>
                     <a class="button is-danger is-small" @click="eliminar(cliente)" > Eliminar</a>
                   </td>
                 </tr>
               </tbody>
             </table>
-    <div ><h3>FALTA ACTUALIZA LA TABLA <small> funciona el boton editar :)</small></h3></div>
-            <h3 class="title is-1">EDITAR DEBE IR EN UN MODAL</h3>
 
-            <div>
-              <h1 class="title is-4"><b>NUEVO CLIENTE</b></h1>
-    <div class="column is-6">
-      <div class="field" >
-        <label class="label is-small">DNI / RUC</label>
-        <div class="control">
-          <input class="input" type="text" v-model="editCliente.dni_ruc">
+
          
-        </div>
-      </div>
-      <div class="field">
-        <label class="label is-small">Nombre</label>
-        <div class="control">
-          <input class="input" type="text" v-model="editCliente.nombre">
-        </div>
-      </div>
-      <div class="field">
-        <label class="label is-small">Teléfono</label>
-        <div class="control">
-          <input class="input" type="text" v-model="editCliente.telefono">
-        </div>
-      </div>
-        <div class="field">
-        <label class="label is-small">email</label>
-        <div class="control">
-          <input class="input" type="text" v-model="editCliente.email">
-        </div>
-      </div>
-      <br>
-      <button class="button is-primary" @click="update(editCliente)">EDITAR</button>
-    </div>
-            </div>
-
           </div>
         </div>
       </div>
@@ -73,11 +41,13 @@
 
 <script>
 import modalCliente from '@/components/Cliente/modalCliente'
+import editCliente from '@/components/Cliente/editCliente'
 export default {
 
   name: 'cliente',
  components: {
    modalCliente,
+   editCliente,
   },
   data () {
     return {
@@ -89,7 +59,9 @@ export default {
         telefono:'',
         email:''
       },
-      EstadoModal: false
+      saludo:'saludo2',
+      EstadoModal: false,
+      EstadoModalEdit: false
     };
   },
 
