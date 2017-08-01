@@ -2,7 +2,7 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-        <button class="button is-primary is-medium" @click="isComponentModalActive = true; sendCliente = null">Nuevo Cliente</button>
+        <button class="button is-primary is-medium" @click="isComponentModalActive = true; sendCliente = null">Nuevo Cliente</button><br><br>
 
         <b-modal :active.sync="isComponentModalActive" has-modal-card>
             <modal-form :clientes="clientes" :sendCliente="sendCliente" @newList="clientes = $event"></modal-form>
@@ -25,7 +25,7 @@
                   <td>{{ cliente.telefono }}</td>
                   <td>
                     <a class="button is-warning is-small" @click="editCliente(cliente)"> Editar</a>
-                    <a class="button is-danger is-small" @click="eliminar(cliente)" > Eliminar</a>
+                    <a class="button is-danger is-small" @click="deleteCliente(cliente)" > Eliminar</a>
                   </td>
                 </tr>
               </tbody>
@@ -60,12 +60,22 @@ export default {
         vm.clientes = res.body;
       });
     },
-    eliminar(cliente){
-      let id = cliente.id
-      this.$http.delete('/api/Clientes/'+id).then((res) => {
-        let vm = this
-        vm.clientes.splice(vm.clientes.indexOf(cliente), 1)
-      });
+    deleteCliente(cliente){
+        this.$dialog.confirm({
+            title: 'Eliminar usuario',
+            message: '¿Esta seguro de <strong>eliminar</strong> este cliente? Esta accion no se puede deshacer.',
+            confirmText: 'Eliminar',
+            type: 'is-danger',
+            hasIcon: true,
+            onConfirm: () => {
+                this.$toast.open('Cliente eliminado')
+                let id = cliente.id
+                this.$http.delete('/api/Clientes/'+id).then((res) => {
+                let vm = this
+                vm.clientes.splice(vm.clientes.indexOf(cliente), 1)
+                });  
+            }
+          })
     },
     editCliente(cliente){
       this.sendCliente = cliente

@@ -1,5 +1,5 @@
 <template>
-<nav class="nav has-shadow" id="cssNav">
+<nav class="nav has-shadow hero is-dark">
   <div class="container">
     <div class="nav-left">
       <figure class="image is-48x48" style="margin-right: 8px;">
