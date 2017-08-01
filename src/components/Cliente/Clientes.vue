@@ -1,12 +1,13 @@
 <template>
     <div class="container">
       <div class="columns">
-      
         <div class="column">
-             <button class="button is-primary is-large" @click="EstadoModal=true"> Nuevo Cliente</button>
-     <modalCliente v-show="EstadoModal" @close="EstadoModal=false"></modalCliente>
-     <editCliente :hola="editCliente" v-show="EstadoModalEdit" @close="EstadoModalEdit=false"></editCliente>
-          <div>
+        <button class="button is-primary is-medium" @click="isComponentModalActive = true; sendCliente = null">Nuevo Cliente</button>
+
+        <b-modal :active.sync="isComponentModalActive" has-modal-card>
+            <modal-form :clientes="clientes" :sendCliente="sendCliente" @newList="clientes = $event"></modal-form>
+        </b-modal>
+
             <h1 class="title is-4"><b>DIRECTORIO DE CLIENTES</b></h1>
             <table class="table">
               <thead>
@@ -23,16 +24,12 @@
                   <td>{{ cliente.nombre }}</td>
                   <td>{{ cliente.telefono }}</td>
                   <td>
-                    <a class="button is-warning is-small" @click="editar(cliente);EstadoModalEdit=true" > Editar</a>
+                    <a class="button is-warning is-small" @click="editCliente(cliente)"> Editar</a>
                     <a class="button is-danger is-small" @click="eliminar(cliente)" > Eliminar</a>
                   </td>
                 </tr>
               </tbody>
             </table>
-
-
-         
-          </div>
         </div>
       </div>
     </div>
@@ -40,28 +37,19 @@
 </template>
 
 <script>
-import modalCliente from '@/components/Cliente/modalCliente'
-import editCliente from '@/components/Cliente/editCliente'
-export default {
+import ModalForm from '@/components/Cliente/ModalForm'
 
-  name: 'cliente',
- components: {
-   modalCliente,
-   editCliente,
+export default {
+  components: {
+    ModalForm
   },
+  name: 'cliente',
+
   data () {
     return {
       clientes: [],
-    	clientes2: [],
-      editCliente:{
-        dni_ruc:'',
-        nombre:'',
-        telefono:'',
-        email:''
-      },
-      saludo:'saludo2',
-      EstadoModal: false,
-      EstadoModalEdit: false
+      sendCliente: {},
+      isComponentModalActive: false
     };
   },
 
@@ -79,22 +67,10 @@ export default {
         vm.clientes.splice(vm.clientes.indexOf(cliente), 1)
       });
     },
-    editar(cliente){
-     let id = cliente.id
-      this.$http.get('/api/Clientes/'+id).then((res) => {
-       this.editCliente = res.body;
-
-      });
-     },
-     update(editCliente){
-      this.$http.put('/api/Clientes/'+editCliente.id,this.editCliente).then((res) => {
-        this.editCliente = {};
-        this.getClientes();
-      });
-       
-     },
-
-   
+    editCliente(cliente){
+      this.sendCliente = cliente
+      this.isComponentModalActive = true
+    }
   },
   created: function(){
     this.getClientes();

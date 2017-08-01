@@ -27,7 +27,6 @@
 	  	<span class="has-text-white">Cliente</span>
 	  </p>
 	  <ul class="menu-list">
-	  	<li><router-link :to="{ path: '/home/registrar_cliente'} " replace><span class="has-text-white">Nuevo</span></router-link></li>
 	  	<li><router-link :to="{ path: '/home/clientes'} " replace><span class="has-text-white">Clientes</span></router-link></li>
 	  </ul>
 </aside>

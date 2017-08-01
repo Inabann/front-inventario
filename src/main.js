@@ -6,6 +6,9 @@ import router from './router'
 import vueResource from 'vue-resource'
 import Auth from './services/Auth.js'
 import vueMoment from 'vue-moment'
+import Buefy from 'buefy'
+import 'buefy/lib/buefy.css'
+
 
 
 Vue.config.productionTip = false
@@ -13,7 +16,9 @@ Vue.config.productionTip = false
 Vue.use(vueResource)
 Vue.use(Auth)
 Vue.use(vueMoment)
-
+Vue.use(Buefy,{
+	defaultIconPack: 'fa'
+})
 
 router.beforeEach(
 	(to, from, next) => {
