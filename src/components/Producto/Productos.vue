@@ -47,38 +47,6 @@
     </div>
     </b-table>
   
-<!-- 
-    <table class="table">
-    <thead>
-      <tr>
-         <th>Modelo</th>
-        <th>Marca</th>
-        <th>Color</th>
-        <th>Tipo</th>
-        <th>Cantidad</th>
-        <th>P. Unidad</th>
-        <th>Fecha Ingreso</th>
-        <th>Opciones</th>
-      </tr>
-    </thead>
-    <tbody>
-       <tr v-for="producto in productos">
-        <td >{{ producto.modelosId }}</td>
-        <td >{{ producto.marcasId }}</td>
-        <td >{{ producto.colorsId }}</td>
-        <td >{{ producto.tiposId }}</td>
-        <td>{{ producto.cantidad }}</td>
-        <td>{{ producto.precio_uni }}</td>
-        <td>{{ producto.fecha_ingreso | moment("add","1 days","YYYY / MM / DD") }}</td>
-        <td>
-          No habra editar :v ta dificil la wea
-          <a class="button is-warning is-small">Editar???</a>
-          <a class="button is-danger is-small" @click="remove(producto)" >Eliminar</a>
-        </td>
-      </tr>
-    </tbody>
-  </table> -->
-
   </div>
 </template>
 
