@@ -2,16 +2,11 @@
   <div>
     <Navbar></Navbar> 
       <div class="columns ">
-        <div class="column" id="appmenu">
+        <div class="column " id="appmenu">
           <appMenu></appMenu>
         </div>
-        <div class="column">
-          <div class="columns " id="appBody">
-            <div class="column">
-              <router-view></router-view>
-            </div>
-            
-          </div>
+        <div class="column" id="appBody">
+          <router-view></router-view>
         </div>
       </div>
   </div>

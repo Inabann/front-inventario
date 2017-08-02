@@ -1,43 +1,26 @@
 <template>
-
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <p class="modal-card-title" v-if="sendCliente">Editar Cliente</p>
-                <p class="modal-card-title" v-else="sendCliente">Nuevo Cliente</p>
-                
-            </header>
-            <section class="modal-card-body">
-                <b-field label="DNI/RUC">
-                    <b-input
-                        type="text"
-                        v-model="cliente.dni_ruc"
-                        placeholder="DNI o RUC"
-                        required>
-                    </b-input>
-                </b-field>
-                <b-field label="Nombres">
-                    <b-input
-                        type="text"
-                        v-model="cliente.nombre"
-                        placeholder="Nombres y Apellidos"
-                        required>
-                    </b-input>
-                </b-field>
-                <b-field label="Numero de Contacto">
-                    <b-input
-                        type="text"
-                        v-model="cliente.telefono"
-                        placeholder="Celular/Telefono"
-                        required>
-                    </b-input>
-                </b-field>
-            </section>
-            <footer class="modal-card-foot">
-                <button class="button" type="button" @click="$parent.close()">Cerrar</button>
-                <button class="button is-primary" @click="saveCliente">Guardar</button>
-            </footer>
-        </div>
-
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title" v-if="sendCliente">Editar Cliente</p>
+      <p class="modal-card-title" v-else="sendCliente">Nuevo Cliente</p>
+        
+    </header>
+    <section class="modal-card-body">
+      <b-field label="DNI/RUC">
+        <b-input type="text" v-model="cliente.dni_ruc" placeholder="DNI o RUC" required></b-input>
+      </b-field>
+      <b-field label="Nombres">
+        <b-input type="text" v-model="cliente.nombre" placeholder="Nombres y Apellidos" required></b-input>
+      </b-field>
+      <b-field label="Numero de Contacto">
+        <b-input type="text" v-model="cliente.telefono" placeholder="Celular/Telefono" required></b-input>
+      </b-field>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button" type="button" @click="$parent.close()">Cerrar</button>
+      <button class="button is-primary" @click="saveCliente">Guardar</button>
+    </footer>
+  </div>
 </template>
 
 <script>
