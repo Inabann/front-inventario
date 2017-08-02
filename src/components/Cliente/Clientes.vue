@@ -2,14 +2,27 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-        <button class="button is-primary is-medium" @click="isComponentModalActive = true; sendCliente = null">Nuevo Cliente</button><br><br>
+        <button class="button is-primary is-medium" @click="isComponentModalActive = true; sendCliente = null ">Nuevo Cliente</button><br><br>
 
         <b-modal :active.sync="isComponentModalActive" has-modal-card>
             <modal-form :clientes="clientes" :sendCliente="sendCliente" @newList="clientes = $event"></modal-form>
         </b-modal>
 
             <h1 class="title is-4"><b>DIRECTORIO DE CLIENTES</b></h1>
+             <div class="columns">
+               <div class="column">
+                 <label for="dni" class="label">Buscar</label>
+            <input type="text" class="label" name="dni" v-model="buscardni" placeholder="DNI/RUC">
+               </div>
+               <!-- <div class="column">
+                 <label for="nombre" class="label">Buscar</label>
+            <input type="text" class="label" name="nombre" v-model="buscar" placeholder="Nombre">
+               </div> -->
+
+             </div>
             <table class="table">
+          
+
               <thead>
                 <tr>
                   <th>DNI/RUC</th>
@@ -19,7 +32,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="cliente in clientes">
+                <tr v-for="cliente in serchuser">
+
                   <td>{{ cliente.dni_ruc}}</td>
                   <td>{{ cliente.nombre }}</td>
                   <td>{{ cliente.telefono }}</td>
@@ -30,6 +44,8 @@
                 </tr>
               </tbody>
             </table>
+
+            
         </div>
       </div>
     </div>
@@ -49,6 +65,9 @@ export default {
     return {
       clientes: [],
       sendCliente: {},
+      buscar:'',
+      buscardni:'',
+
       isComponentModalActive: false
     };
   },
@@ -80,6 +99,14 @@ export default {
     editCliente(cliente){
       this.sendCliente = cliente
       this.isComponentModalActive = true
+    }
+  },
+
+  computed:{
+    serchuser: function(){
+      return this.clientes.filter((cliente) => cliente.dni_ruc.includes(this.buscardni));
+      
+
     }
   },
   created: function(){

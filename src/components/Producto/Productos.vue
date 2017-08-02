@@ -3,7 +3,10 @@
 <h1 class="has-text-centered title"><span class="has-text-info">Productos Ingresados</span></h1>
   <div class="columns">
     <div class="column">
-      <table class="table">
+    <label for="modelo" class="label">Buscar</label>
+            <input type="text" class="label" name="modelo" v-model="buscarmodelo" placeholder="MODELO">
+             
+          <table class="table">
     <thead>
       <tr>
          <th>Modelo</th>
@@ -17,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-       <tr v-for="producto in productos">
+       <tr v-for="producto in serchmodelo">
         <td >{{ producto.modelosId }}</td>
         <td >{{ producto.marcasId }}</td>
         <td >{{ producto.colorsId }}</td>
@@ -32,6 +35,7 @@
       </tr>
     </tbody>
   </table>
+  <pre>{{$data}}</pre>
     </div>
   
   </div>
@@ -47,7 +51,8 @@ export default {
   name: 'Productos',
   data () {
     return {
-      productos: []
+      productos: [],
+      buscarmodelo:''
     };
   },
   methods:{
@@ -65,6 +70,11 @@ export default {
         vm.productos.splice(vm.productos.indexOf(producto), 1)
 
       });
+    }
+  },
+  computed:{
+    serchmodelo: function(){
+      return this.productos.filter((producto) => producto.modelosId.includes(this.buscarmodelo));
     }
   },
   created: function(){
