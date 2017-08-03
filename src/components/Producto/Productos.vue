@@ -70,14 +70,25 @@ export default {
         console.log(res.body)
       })
     },
-    remove(producto){
-      this.$http.delete('/api/Productos/'+producto.id).then((res) => {
-        let vm = this
-        vm.productos.splice(vm.productos.indexOf(producto), 1)
 
-      });
-    }
+    remove(producto){
+        this.$dialog.confirm({
+            title: 'Eliminar producto',
+            message: '¿Esta seguro de <strong>eliminar</strong> este producto? Esta accion no se puede deshacer.',
+            confirmText: 'Eliminar',
+            type: 'is-danger',
+            hasIcon: true,
+            onConfirm: () => {
+                this.$toast.open({message:'Producto eliminado',position: 'is-bottom',type: 'is-danger'})
+                this.$http.delete('/api/Productos/'+producto.id).then((res) => {
+                let vm = this
+                vm.productos.splice(vm.productos.indexOf(producto), 1)
+                });
+            }
+          })
+    },
   },
+
   computed: {
     filteredProductos: function(){
       return this.productos.filter((producto) => {

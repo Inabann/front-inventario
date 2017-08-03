@@ -87,7 +87,7 @@ export default {
             type: 'is-danger',
             hasIcon: true,
             onConfirm: () => {
-                this.$toast.open('Cliente eliminado')
+                this.$toast.open({message:'Cliente eliminado',position: 'is-bottom',type: 'is-danger'})
                 let id = cliente.id
                 this.$http.delete('/api/Clientes/'+id).then((res) => {
                 let vm = this
@@ -105,8 +105,6 @@ export default {
   computed:{
     serchuser: function(){
       return this.clientes.filter((cliente) => cliente.dni_ruc.includes(this.buscardni));
-      
-
     }
   },
   created: function(){
