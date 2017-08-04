@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title is-4"><span>Registrar Ingreso de Productos</span></h1>
+    <h1 class="has-text-centered title is-3"><span>Registrar Ingreso de Productos</span></h1>
     <div class="columns">
      <div class="column is-3">
      <label for="modelo" class="label">Modelo</label>
@@ -72,6 +72,7 @@ export default {
         marcasId: '',
         colorsId: '',
         cantidad: '',
+        cantidad_res: '',
         precio_uni: '',
         fecha_ingreso: ''
       }
@@ -79,10 +80,10 @@ export default {
   },
   methods: {
     addProducto(){
+      this.producto.cantidad_res = this.producto.cantidad;
       this.$http.post('/api/Productos', this.producto).then((res) => {
        if(res.ok){
-          //agregar notificacion de ingreso correcto y de errores
-          console.log(res.body);
+          this.$toast.open({message:'Producto guardado',type: 'is-success'})
         } 
       });
     }

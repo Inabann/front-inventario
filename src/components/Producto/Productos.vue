@@ -38,15 +38,13 @@
         </span>
       </b-table-column>
       <b-table-column label="Opciones" >
-        <a class="button is-warning is-small">Editar???</a>
         <a class="button is-danger is-small" @click="remove(props.row)" >Eliminar</a>
       </b-table-column>
     </template>
     <div slot="empty" class="has-text-centered">
-      This table is empty!
+      Cargando ...
     </div>
     </b-table>
-  
   </div>
 </template>
 
@@ -67,7 +65,6 @@ export default {
       this.$http.get('/api/Productos?filter[order]=fecha_ingreso%20DESC&').then((res) => { //productos ordenados de forma descendente
         let vm = this
         vm.productos = res.body
-        console.log(res.body)
       })
     },
 

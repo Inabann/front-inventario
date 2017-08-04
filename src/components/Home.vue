@@ -6,7 +6,10 @@
           <appMenu></appMenu>
         </div>
         <div class="column" id="appBody">
-          <router-view></router-view>
+          <div class="container">
+            <router-view></router-view>
+          </div>
+          
         </div>
       </div>
   </div>
