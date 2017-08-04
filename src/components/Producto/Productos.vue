@@ -2,7 +2,7 @@
   <div class="container">
     <button class="button is-info is-medium" @click="isComponentModalActive = true; sendProducto = null ">Nuevo Producto</button><br><br>
     <b-modal :active.sync="isComponentModalActive" has-modal-card>
-        <modal-form :prodcutos="productos" :sendProducto="sendProducto" @newList="productos = $event"></modal-form>
+        <modal-form :productos="productos" :sendProducto="sendProducto" @newList="productos = $event"></modal-form>
     </b-modal>
 
     <h1 class="has-text-centered title"><span class="has-text-info">Productos Ingresados</span></h1>

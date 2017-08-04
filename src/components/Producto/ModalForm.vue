@@ -81,6 +81,7 @@ export default {
         marcasId: '',
         colorsId: '',
         cantidad: '',
+        cantidad_res: '',
         precio_uni: '',
         fecha_ingreso: ''
       }
@@ -97,6 +98,7 @@ export default {
           this.$toast.open({message:'Producto editado',type: 'is-success'})
         })
       } else {
+        this.producto.cantidad_res = this.producto.cantidad;
         this.$http.post('/api/Productos', this.producto).then(res => {
           this.productos.push(res.body)
           this.$emit('newList', this.productos)
@@ -107,7 +109,6 @@ export default {
     }
   },
     created: function(){
-      console.log(this.sendProducto)
       if(this.sendProducto){
         this.producto = this.sendProducto
 
