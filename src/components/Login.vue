@@ -17,7 +17,7 @@
               </p>
               <label class="label">Password</label>
               <p class="control has-icons-left">
-                <input class="input" type="password" placeholder="●●●●●●●" v-model="cred.password">
+                <input class="input" type="password" placeholder="password" v-model="cred.password">
                 <span class="icon is-small is-left">
                   <i class="fa fa-lock"></i>
                 </span>
@@ -58,6 +58,10 @@ export default {
         console.log(res);
         this.$auth.setToken(res.body.id, res.body.userId, res.body.created, res.body.ttl);
         this.$router.push('/home');
+          const loadingComponent = this.$loading.open()
+          setTimeout(() => {
+            loadingComponent.close()
+            }, 0.5 * 1000)
       });
     }
   }
