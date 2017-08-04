@@ -1,38 +1,45 @@
 <template>
-
-
 		<div class="field has-addons">
 		  <div class="field-body">
 		  <p class="control" v-if="!actions">
 		    <input class="input" type="text" v-model="editModelo.nombre">
 		  </p>
-		  <p class="control" v-if="actions">
-		    <a class="button" @click="actions = !actions">
-					<span class="icon is-small">
-			      <i class="fa fa-pencil-square-o"></i>
-			    </span>
-		    </a>
+		  <p class="control" v-show="actions">
+        <b-tooltip label="Opciones" type="is-info" animated>
+          <a class="button" @click="actions = !actions">
+            <span class="icon is-small">
+              <i class="fa fa-pencil-square-o"></i>
+            </span>
+          </a>
+        </b-tooltip>
 		  </p>
 		  <p class="control" v-if="!actions">
-		    <a class="button" @click="addModelo">
-		      <span class="icon is-small">
-			      <i class="fa fa-plus"></i>
-			    </span>
-		    </a>
+		    <b-tooltip label="Agregar" type="is-success" animated>
+          <a class="button" @click="addModelo">
+            <span class="icon is-small">
+              <i class="fa fa-plus"></i>
+            </span>
+          </a>
+        </b-tooltip>     
 		  </p>
 		  <p class="control" v-if="!actions">
-		    <a class="button" @click="removeModelo(editModelo)">
-		      <span class="icon is-small">
-			      <i class="fa fa-minus"></i>
-			    </span>
-		    </a>
+        <b-tooltip label="Eliminar" type="is-danger" animated>
+          <a class="button" @click="removeModelo(editModelo)">
+            <span class="icon is-small">
+              <i class="fa fa-minus"></i>
+            </span>
+          </a>
+        </b-tooltip>
 		  </p>
 		  <p class="control" v-if="!actions">
-		    <a class="button" @click="actions = !actions">
-		      <span class="icon is-small">
-			      <i class="fa fa-reply"></i>
-			    </span>
-		    </a>
+        <b-tooltip label="Atras" type="is-warning" animated>
+          <a class="button" @click="actions = !actions">
+            <span class="icon is-small">
+              <i class="fa fa-reply"></i>
+            </span>
+          </a>
+        </b-tooltip>
+		    
 		  </p>
 		  <p class="control" v-if="actions">
 		    <span class="select">
@@ -42,9 +49,7 @@
 		    </span>
 		  </p>
 		</div>
-		</div>
-
-
+	</div>
 </template>
 
 <script>

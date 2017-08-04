@@ -30,33 +30,10 @@
       </b-table-column>
     </template>
     <div slot="empty" class="has-text-centered">
-      This table is empty!
+      Cargando ...
     </div>
     </b-table>
-
-    <!-- <table class="table">
-    <thead>
-      <tr>
-        <th>Modelo</th>
-        <th>Marca</th>
-        <th>Color</th>
-        <th>Tipo</th>
-        <th>Cantidad</th>
-      </tr>
-    </thead>
-    <tbody>
-       <tr v-for="producto in stock">
-        <td >{{ producto._id.modelo }}</td>
-        <td >{{ producto._id.marca }}</td>
-        <td >{{ producto._id.color }}</td>
-        <td >{{ producto._id.tipo }}</td>
-        <td>{{ producto.cantidad }}</td>
-      </tr>
-    </tbody>
-  </table> -->
 	</div>
-	
-	
 </template>
 
 <script>

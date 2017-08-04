@@ -2,7 +2,7 @@
   <div class="container">
     <button class="button is-info is-medium" @click="isComponentModalActive = true; sendProducto = null ">Nuevo Producto</button><br><br>
     <b-modal :active.sync="isComponentModalActive" has-modal-card>
-        <modal-form :prodcutos="productos" :sendProducto="sendProducto" @newList="productos = $event"></modal-form>
+        <modal-form :productos="productos" :sendProducto="sendProducto" @newList="productos = $event"></modal-form>
     </b-modal>
 
     <h1 class="has-text-centered title"><span class="has-text-info">Productos Ingresados</span></h1>
@@ -43,15 +43,13 @@
         </span>
       </b-table-column>
       <b-table-column label="Opciones" >
-        <a class="button is-warning is-small">Editar???</a>
         <a class="button is-danger is-small" @click="remove(props.row)" >Eliminar</a>
       </b-table-column>
     </template>
     <div slot="empty" class="has-text-centered">
-      This table is empty!
+      Cargando ...
     </div>
     </b-table>
-  
   </div>
 </template>
 
@@ -79,7 +77,6 @@ export default {
       this.$http.get('/api/Productos?filter[order]=fecha_ingreso%20DESC&').then((res) => { //productos ordenados de forma descendente
         let vm = this
         vm.productos = res.body
-        console.log(res.body)
       })
     },
 

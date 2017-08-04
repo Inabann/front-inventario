@@ -19,8 +19,7 @@
 	    <span class="has-text-white">VENTAS</span>
 	  </p>
 	  <ul class="menu-list">
-	    <li><a><span class="has-text-white">Stock???</span></a></li>
-	    <li><a><span class="has-text-white">Ingreso</span></a></li>
+	    <li ><router-link :to="{ path: '/home/registrar_venta'} " replace><span class="has-text-white">Registrar</span></router-link></li>
 	    
 	  </ul>
 	  <p class="menu-label">
