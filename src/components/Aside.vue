@@ -13,14 +13,13 @@
 	  <ul class="menu-list">
 	    <li ><router-link :to="{ path: '/home/productos'} " replace><span class="has-text-white">Producto</span></router-link></li>
 	    <li><router-link :to="{ path: '/home/stock'} " replace><span class="has-text-white">Stock</span></router-link></li>
-	    <li><router-link :to="{ path: '/home/registrar_producto'} " replace><span class="has-text-white">Ingresar</span></router-link></li>
+
 	  </ul>
 	  <p class="menu-label">
 	    <span class="has-text-white">VENTAS</span>
 	  </p>
 	  <ul class="menu-list">
-	    <li><a><span class="has-text-white">Stock???</span></a></li>
-	    <li><a><span class="has-text-white">Ingreso</span></a></li>
+	    <li ><router-link :to="{ path: '/home/registrar_venta'} " replace><span class="has-text-white">Registrar</span></router-link></li>
 	    
 	  </ul>
 	  <p class="menu-label">

@@ -2,7 +2,7 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-        <button class="button is-primary is-medium" @click="isComponentModalActive = true; sendCliente = null ">Nuevo Cliente</button><br><br>
+        <button class="button is-info is-medium" @click="isComponentModalActive = true; sendCliente = null ">Nuevo Cliente</button><br><br>
 
         <b-modal :active.sync="isComponentModalActive" has-modal-card>
             <modal-form :clientes="clientes" :sendCliente="sendCliente" @newList="clientes = $event"></modal-form>

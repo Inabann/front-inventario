@@ -6,7 +6,9 @@ import Cliente from '@/components/Cliente/Clientes'
 import Reportes from '@/components/Reporte/Reportes'
 import Producto from '@/components/Producto/Productos'
 import Stock from '@/components/Producto/Stock'
-import RegistrarProducto from '@/components/Producto/Registrar'
+import RegistrarVenta from '@/components/Venta/RegistrarVenta'
+import RegistrarProducto from '@/components/Producto/ModalForm'
+
 
 
 Vue.use(Router)
@@ -50,6 +52,10 @@ export default new Router({
         {
           path: 'stock',
           component: Stock
+        },
+        {
+          path: 'registrar_venta',
+          component: RegistrarVenta
         }
       ]
     },
