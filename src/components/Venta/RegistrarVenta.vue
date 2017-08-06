@@ -4,10 +4,10 @@
 		<div class="columns">
 			<div class="column is-2">
 				<b-field label="Cliente">
-    		<b-select placeholder="Cliente" icon="user" v-model="dVenta.cliente">
-	      	<option v-for="cliente in clientes" :value="cliente.id" >{{ cliente.nombre }}</option>
-	    	</b-select>
-    	</b-field>
+	    		<b-select placeholder="Cliente" icon="user" v-model="dVenta.cliente">
+		      	<option v-for="cliente in clientes" :value="cliente.id" >{{ cliente.nombre }}</option>
+		    	</b-select>
+    		</b-field>
 			</div>
 			<div class="column is-2">
 				<b-field label="T. Pago">
@@ -15,7 +15,7 @@
 		      <option value="contado">Contado</option>
 		      <option value="credito">Credito</option>
 		    </b-select>
-			</b-field>
+				</b-field>
 			</div>
 			<div class="column">
 				<b-field label="Dirección">
@@ -35,7 +35,7 @@
 			  </div>
 			</b-field>
 			</div>
-			<div class="column is-2">
+			<div class="column is-3">
 				<b-field label="Fecha">
 				<div class="control has-icons-left">
 			    <input class="input" type="date" v-model="dVenta.fecha_venta">
@@ -45,7 +45,7 @@
 			  </div>
 			</b-field>
 			</div>
-			<div class="column is-1">
+			<!-- <div class="column is-1">
 				<b-field label="ok?">
 				<a class="button is-success" @click="createDVenta">
 			    <span class="icon is-small">
@@ -53,22 +53,21 @@
 			    </span>
 			  </a>
 			</b-field>
-			</div>
+			</div> -->
 		</div>
-		<MostrarStock></MostrarStock>
-				<pre>
-			{{ dVenta}}
-		</pre>
+		<MostrarStock @ventas="ventas = $event"></MostrarStock>
+		<PrintModal :ventas="ventas" :detalleVenta="dVenta"></PrintModal>
 	</div>
 </template>
 
 <script>
 import MostrarStock from '@/components/Venta/MostrarStock'
+import PrintModal from '@/components/Venta/PrintModal'
 
 export default {
 
   name: 'RegistrarVenta',
-  components: { MostrarStock },
+  components: { MostrarStock, PrintModal },
 
   data () {
     return {
@@ -80,6 +79,7 @@ export default {
     		costo_envio: 0,
     		fecha_venta: ''
     	},
+    	ventas: [],
     	showProductos: false
     };
   },
@@ -93,7 +93,7 @@ export default {
   		this.$http.post('/api/DetalleVenta', this.dVenta).then(res => {
   			this.dVenta.id = res.body.id
   			console.log(this.dVenta.id)
-  			this.showProductos = true
+  			this.showProductos = true //cambiar a falso cuando termine
   		})
   	}
   },

@@ -37,7 +37,8 @@
           <td >{{ producto._id.marca }}</td>
           <td >{{ producto._id.tipo }}</td>
           <td >{{ producto.cantidad }}</td>
-          <td ><input type="number" class="input" v-model="restarCantidad"></td>
+          <td><b-field><b-input type="number" min="0" :max="producto.cantidad" v-model="producto.restarCantidad"></b-input></b-field>
+          </td>
           <td >
             <a class="button is-info is-small" @click="addCart(producto)"><span class="icon is-small"><i class="fa fa-shopping-cart"></i></span></a>
           </td>
@@ -69,9 +70,6 @@
     		</tr>
     	</tbody>
     </table>
-    <pre>
-    	{{ ventas }}
-    </pre>
 	</div>
 	
 </template>
@@ -96,17 +94,24 @@ export default {
   },
   methods:{
   	addCart(producto){
-  		let venta = {}
-			venta.modelo = producto._id.modelo
-  		venta.tipo = producto._id.tipo
-  		venta.marca = producto._id.marca
-  		venta.color = producto._id.color
-  		venta.cantidad = this.restarCantidad
-  		this.ventas.push(venta)
-  		console.log(this.ventas)
+  		if(producto.cantidad >= producto.restarCantidad) {
+        let venta = {}
+  			venta.modelo = producto._id.modelo
+    		venta.tipo = producto._id.tipo
+    		venta.marca = producto._id.marca
+    		venta.color = producto._id.color
+    		venta.cantidad = producto.restarCantidad
+        venta.producto = producto
+    		this.ventas.push(venta)
+    		this.stock[(this.stock.indexOf(producto))].cantidad -=producto.restarCantidad
+        producto.restarCantidad = 0
+        this.$emit('ventas', this.ventas)
+      }
   	},
   	removeCart(venta){
-  		this.ventas.splice(this.ventas.indexOf(venta), 1)
+      this.stock[(this.stock.indexOf(venta.producto))].cantidad += Number(venta.cantidad)
+      this.ventas.splice(this.ventas.indexOf(venta), 1)
+      this.$emit('ventas', this.ventas)
   	},
   	//es el filtro de la busqueda
   	setModelo(event){

@@ -6,27 +6,27 @@
     </b-modal>
 
     <h1 class="has-text-centered title"><span class="has-text-info">Productos Ingresados</span></h1>
-    <b-field grouped>
-      <b-input placeholder="Buscar modelos..." type="search" icon-pack="fa" icon="search" v-model="filter"></b-input>
-      <b-input placeholder="Buscar marca... aun no funciona" type="search" icon-pack="fa" icon="search"></b-input>
-      <b-input placeholder="Buscar color... aun no funciona" type="search" icon-pack="fa" icon="search"></b-input>
-      <b-input placeholder="Buscar tipo... aun no funciona" type="search" icon-pack="fa" icon="search"></b-input>
+    <b-field>
+    <a class="button is-info" @click="buscar = !buscar"><span class="icon is-small"><i class="fa fa-search"></i></span></a>
+    <b-field grouped v-if="buscar">
+      <b-input placeholder="por modelos..." type="search" icon-pack="fa" icon="search" v-model="filter" class="inputBusqueda"></b-input>
+      <b-input placeholder="por color..." type="search" icon-pack="fa" icon="search" v-model="fColor" class="inputBusqueda"></b-input>
+      <b-input placeholder="por marca..." type="search" icon-pack="fa" icon="search" v-model="fMarca" class="inputBusqueda"></b-input>
+      <b-input placeholder="por tipo..." type="search" icon-pack="fa" icon="search" v-model="fTipo" class="inputBusqueda"></b-input>
+    </b-field>
+    
     </b-field>
     <b-table :data="filteredProductos" :mobile-cards="true" :paginated="true" :per-page="10" >
-
     <template scope="props">
       <b-table-column field="modelosId" label="Modelo"  sortable>
         {{ props.row.modelosId }}
       </b-table-column>
-
-      <b-table-column field="marcasId" label="Marca" sortable>
-        {{ props.row.marcasId }}
-      </b-table-column>
-
       <b-table-column field="colorsId" label="Color" sortable>
         {{ props.row.colorsId }}
       </b-table-column>
-
+      <b-table-column field="marcasId" label="Marca" sortable>
+        {{ props.row.marcasId }}
+      </b-table-column>
       <b-table-column field="tiposId" label="Tipo" sortable>
         {{ props.row.tiposId }}
       </b-table-column>
@@ -66,6 +66,10 @@ export default {
     return {
       productos: [],
       filter: '',
+      fMarca: '',
+      fColor: '',
+      fTipo: '',
+      buscar: false,
       sendProducto: {},
 
       isComponentModalActive: false
@@ -101,7 +105,7 @@ export default {
   computed: {
     filteredProductos: function(){
       return this.productos.filter((producto) => {
-        return producto.modelosId.match(this.filter);
+        return producto.modelosId.match(this.filter) && producto.marcasId.match(this.fMarca) && producto.colorsId.match(this.fColor) && producto.tiposId.match(this.fTipo);
         //para usar mas de un filtro usar ejemplo ;v
         //blog.title.match(search1) || blog.content.match(search2)
       });
@@ -114,7 +118,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
-</style>-->
+  .inputBusqueda {
+    width: 150px;
+  }
+</style>
 
 
 
