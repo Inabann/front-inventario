@@ -38,7 +38,7 @@
                   <td>{{ cliente.nombre }}</td>
                   <td>{{ cliente.telefono }}</td>
                   <td>
-                    <a class="button is-warning is-small" @click="editCliente(cliente)"> Editar</a>
+                    <a class="button  is-warning is-small " @click="editCliente(cliente)"> Editar</a>
                     <a class="button is-danger is-small" @click="deleteCliente(cliente)" > Eliminar</a>
                   </td>
                 </tr>
