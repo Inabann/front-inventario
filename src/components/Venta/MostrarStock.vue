@@ -10,17 +10,17 @@
 		  			</b-select>
     			</th>
           <th>
-          	<b-select placeholder="Color">
+          	<b-select placeholder="Color" @change="setColor">
 			        <option v-for="option in colores" :value="option.nombre"> {{ option.nombre }}</option>
 		  			</b-select>
           </th>
           <th>
-          	<b-select placeholder="Marca">
+          	<b-select placeholder="Marca"  @change="setMarca">
 			        <option v-for="option in marcas" :value="option.nombre">{{ option.nombre }}</option>
 		  			</b-select>
           </th>
           <th>
-          	<b-select placeholder="Tipo">
+          	<b-select placeholder="Tipo"  @change="setTipo">
 			        <option v-for="option in tipos" :value="option.nombre">{{ option.nombre }}</option>
 		  			</b-select>
           </th>
@@ -45,33 +45,40 @@
         </tr>
       </tbody>
     </table>
-    <h3 class="title is-5">Shopping Cart o Carro de compras :v</h3>
-    <table class="table">
-    	<thead>
-    		<tr>
-    			<th>Modelo</th>
-    			<th>Color</th>
-    			<th>Marca</th>
-    			<th>Tipo</th>
-    			<th>Cantidad</th>
-    			<th>Opciones</th>
-    		</tr>
-    	</thead>
-    	<tbody>
-    		<tr v-for="venta in ventas">
-    			<td>{{ venta.modelo }}</td>
-    			<td>{{ venta.color }}</td>
-    			<td>{{ venta.marca }}</td>
-    			<td>{{ venta.tipo }}</td>
-    			<td>{{ venta.cantidad }}</td>
-    			<td>
-    				<a class="button is-warning is-small" @click="removeCart(venta)"><span class="icon is-small"><i class="fa fa-minus"></i></span></a>
-    			</td>
-    		</tr>
-    	</tbody>
-    </table>
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Shopping Cart o Carro de compras
+        </p>
+      </header>
+      <div class="card-content">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Modelo</th>
+              <th>Color</th>
+              <th>Marca</th>
+              <th>Tipo</th>
+              <th>Cantidad</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="venta in ventas">
+              <td>{{ venta.modelo }}</td>
+              <td>{{ venta.color }}</td>
+              <td>{{ venta.marca }}</td>
+              <td>{{ venta.tipo }}</td>
+              <td>{{ venta.cantidad }}</td>
+              <td>
+                <a class="button is-warning is-small" @click="removeCart(venta)"><span class="icon is-small"><i class="fa fa-minus"></i></span></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 	</div>
-	
 </template>
 
 <script>
@@ -89,7 +96,10 @@ export default {
     	colores: [],
     	tipos: [],
     	marcas: [],
-    	fModelo: ''
+    	fModelo: '',
+      fColor: '',
+      fMarca: '',
+      fTipo: ''
     };
   },
   methods:{
@@ -118,6 +128,18 @@ export default {
   		this.fModelo = event
   		this.active = true
   	},
+    setColor(event){
+      this.fColor = event
+      this.active = true
+    },
+    setMarca(event){
+      this.fMarca = event
+      this.active = true
+    },
+    setTipo(event){
+      this.fTipo = event
+      this.active = true
+    },
 
   	//opciones de los select
   	getStock(){
@@ -148,7 +170,7 @@ export default {
     },
     Busqueda: function(){
       return this.filteredStock.filter((producto) => {
-        return producto._id.modelo.match(this.fModelo);
+        return producto._id.modelo.match(this.fModelo) && producto._id.color.match(this.fColor) && producto._id.marca.match(this.fMarca) && producto._id.tipo.match(this.fTipo);
         //para usar mas de un filtro usar ejemplo ;v
         //blog.title.match(search1) || blog.content.match(search2)
       });

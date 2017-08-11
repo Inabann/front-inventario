@@ -1,8 +1,9 @@
 <template>
   <div>
     <Navbar></Navbar> 
-      <div class="columns ">
-        <div class="column " id="appmenu">
+      <div class="columns">
+        <!--a esta clase debes agregar is-hidden para q se oculte el menu/Aside -->
+        <div class="column is-hidden-mobile" id="appmenu">
           <appMenu></appMenu>
         </div>
         <div class="column" id="appBody">

@@ -7,7 +7,7 @@ import Reportes from '@/components/Reporte/Reportes'
 import Producto from '@/components/Producto/Productos'
 import Stock from '@/components/Producto/Stock'
 import RegistrarVenta from '@/components/Venta/RegistrarVenta'
-import RegistrarProducto from '@/components/Producto/ModalForm'
+import Ventas from '@/components/Venta/Ventas'
 
 
 
@@ -46,16 +46,16 @@ export default new Router({
           component: Producto
         },
         {
-          path: 'registrar_producto',
-          component: RegistrarProducto
-        },
-        {
           path: 'stock',
           component: Stock
         },
         {
           path: 'registrar_venta',
           component: RegistrarVenta
+        },
+        {
+          path: 'ventas',
+          component: Ventas
         }
       ]
     },

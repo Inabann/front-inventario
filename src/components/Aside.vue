@@ -19,8 +19,8 @@
 	    <span class="has-text-white">VENTAS</span>
 	  </p>
 	  <ul class="menu-list">
-	    <li ><router-link :to="{ path: '/home/registrar_venta'} " replace><span class="has-text-white">Registrar</span></router-link></li>
-	    
+	    <li ><router-link :to="{ path: '/home/registrar_venta'} " replace><span class="has-text-white">Nuevo</span></router-link></li>
+	   	<li ><router-link :to="{ path: '/home/ventas'} " replace><span class="has-text-white">Registro</span></router-link></li>
 	  </ul>
 	  <p class="menu-label">
 	  	<span class="has-text-white">Cliente</span>
@@ -28,6 +28,7 @@
 	  <ul class="menu-list">
 	  	<li><router-link :to="{ path: '/home/clientes'} " replace><span class="has-text-white">Clientes</span></router-link></li>
 	  </ul>
+
 </aside>
 </template>
 

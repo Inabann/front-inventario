@@ -50,7 +50,7 @@
           })
         } else {
           this.$http.post('/api/Clientes', this.cliente).then(res => {
-            this.clientes.push(res.body)
+            this.clientes.unshift(res.body)
             this.$emit('newList', this.clientes)
             this.$parent.close()
             this.$toast.open({message:'Cliente guardado',type: 'is-success'})
@@ -59,10 +59,8 @@
       }
     },
     created: function(){
-      console.log(this.sendCliente)
       if(this.sendCliente){
         this.cliente = this.sendCliente
-
       }
     }
   }

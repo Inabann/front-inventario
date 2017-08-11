@@ -100,7 +100,7 @@ export default {
       } else {
         this.producto.cantidad_res = this.producto.cantidad;
         this.$http.post('/api/Productos', this.producto).then(res => {
-          this.productos.push(res.body)
+          this.productos.unshift(res.body)
           this.$emit('newList', this.productos)
           this.$parent.close()
           this.$toast.open({message:'Producto guardado',type: 'is-success'})

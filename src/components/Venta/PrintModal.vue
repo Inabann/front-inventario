@@ -21,7 +21,7 @@
 				    </thead>
 				    <tbody>
 				      <tr v-for="producto in ventas">
-				        <td>{{ producto.modelo + producto.color }}</td>
+				        <td>{{ producto.modelo +' ' +producto.color }}</td>
 				        <td>{{ producto.cantidad }}</td>
 				        <td> 50 </td>
 				      </tr>
@@ -59,31 +59,31 @@ export default {
 	},
 	methods:{
 		setDV(){
-			this.detalleVenta.total = 50 //falta calcular el total de la suma de los productos y el costo de envio
+			this.detalleVenta.total = 50
+			//falta calcular el total de la suma de los productos y el costo de envio
+			
+		},
+		guardar(){
+			this.setDV()
 			this.$http.post('/api/DetalleVenta', this.detalleVenta).then(res => {
-					this.dvId = res.body.id
+				this.dvId = res.body.id
+				this.ventas.forEach(venta =>{
+					this.saveVenta(venta)
+					this.$http.post('/api/Productos/reducir', venta).catch(err => console.log(err))
+				})
 			})
 		},
 		saveVenta(venta){
-		  let newVenta = {
+			let newVenta = {
 		  	modelosId : venta.modelo,
 		  	colorsId : venta.color,
 			  marcasId: venta.marca,
 			  tiposId: venta.tipo,
-			  detalleVentaId: this.dvId,
 			  subtotal: 10,
 			  cantidad: venta.cantidad
 		  }
-		  this.$http.post('/api/Venta', newVenta).then(res => {
-		  	console.log('venta guardada: '+res.body)
-		  })
-		},
-		guardar(){
-			this.setDV()
-			this.ventas.forEach(venta =>{
-				this.saveVenta(venta)
-				this.$http.post('/api/Productos/reducir', venta).then(res => console.log('producto reducido segun venta'))
-			})
+			newVenta.detalleVentaId = this.dvId
+		  this.$http.post('/api/Venta', newVenta).catch(err => console.log(err))
 		}
 	}
 };
