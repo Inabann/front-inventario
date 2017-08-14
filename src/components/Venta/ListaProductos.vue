@@ -1,6 +1,11 @@
 <template>
 <div>
-	<ul>
+	<a class="button is-warning is-small" @click="mostrar = !mostrar">
+		<span class="icon is-small"><i class="fa fa-list"></i></span><span>Mostrar</span>
+		<span class="icon is-small" v-if="!mostrar"><i class="fa fa-toggle-down"></i></span>
+		<span class="icon is-small" v-if="mostrar"><i class="fa fa-toggle-up"></i></span>
+	</a>
+	<ul v-if="mostrar">
 		<li v-for="producto in productos">
 			<div class="tags has-addons">
 			  <span class="tag">{{ producto.modelosId }}</span>
@@ -18,7 +23,8 @@ export default {
 
   data () {
     return {
-    	productos: []
+    	productos: [],
+    	mostrar: false
     };
   },
   methods:{

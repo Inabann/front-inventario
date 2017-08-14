@@ -83,6 +83,7 @@ export default {
 			  cantidad: venta.cantidad
 		  }
 			newVenta.detalleVentaId = this.dvId
+			newVenta.fecha_venta = this.detalleVenta.fecha_venta
 		  this.$http.post('/api/Venta', newVenta).catch(err => console.log(err))
 		}
 	}

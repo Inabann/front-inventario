@@ -5,7 +5,7 @@
   </p>
  <ul class="menu-list">
 	    <router-link :to="{ path: '/home' }" tag="li" replace><a><span class="has-text-white">Dashboard</span></a></router-link>
-		 <li><a><span class="has-text-white">Reportes</span></a></li>
+		 <router-link :to="{ path: '/home/reportes' }" tag="li" replace><a><span class="has-text-white">Reportes</span></a></router-link>
 	  </ul>
 	  <p class="menu-label">
 	    <span class="has-text-white">Inventario</span>
