@@ -1,6 +1,6 @@
 <template>
 <div>
-	<a class="button is-warning is-small" @click="mostrar = !mostrar">
+	<a class="button is-warning is-small" @click="getProductos">
 		<span class="icon is-small"><i class="fa fa-list"></i></span><span>Mostrar</span>
 		<span class="icon is-small" v-if="!mostrar"><i class="fa fa-toggle-down"></i></span>
 		<span class="icon is-small" v-if="mostrar"><i class="fa fa-toggle-up"></i></span>
@@ -29,11 +29,15 @@ export default {
   },
   methods:{
   	getProductos(){
-  		this.$http.get('/api/DetalleVenta/'+this.detalleVentaId+'/venta').then(res => this.productos = res.body)
+      if(!this.mostrar){
+        this.$http.get('/api/DetalleVenta/'+this.detalleVentaId+'/venta').then(res => {
+          this.productos = res.body
+          this.mostrar = true
+        })
+      } else {
+        this.mostrar = false
+      }
   	}
-  },
-  created: function(){
-  	this.getProductos()
   }
 };
 </script>

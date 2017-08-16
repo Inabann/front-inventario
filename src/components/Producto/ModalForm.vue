@@ -119,7 +119,7 @@ export default {
 
 
 <style scoped>
-    .modal-card {
-        /*width: auto;
-*/    }
+.modal-card {
+  width: auto;
+}
 </style>

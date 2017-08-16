@@ -3,10 +3,10 @@
 	<h1 class="title is-3 has-text-centered"><span class="has-text-info">Registro de Ventas Realizadas</span></h1>
 	<b-table :data="ventas" :mobile-cards="true" :paginated="true" :per-page="10" >
     <template scope="props">
-    	<b-table-column field="fecha_ingreso" label="F. Ingreso" sortable>
+    	<b-table-column field="fecha_venta" label="F. Venta" sortable>
         <span class="tag is-success">
           <!-- {{ new Date(props.row.fecha_ingreso).toLocaleDateString() }} -->
-          {{ props.row.fecha_ingreso | moment("add","1 days","YYYY / MM / DD") }}
+          {{ props.row.fecha_venta  | moment("add","1 days","YYYY / MM / DD") }}
         </span>
       </b-table-column>
       <b-table-column field="tipo" label="Tipo"  sortable>

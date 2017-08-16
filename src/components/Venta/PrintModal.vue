@@ -23,14 +23,25 @@
 				      <tr v-for="producto in ventas">
 				        <td>{{ producto.modelo +' ' +producto.color }}</td>
 				        <td>{{ producto.cantidad }}</td>
-				        <td> 50 </td>
+				        <td>
+									<div class="field has-addons">
+									  <div class="control">
+									    <input class="input" type="number" v-model.number="producto.sub_total">
+									  </div>
+									  <div class="control">
+									    <a class="button is-success" @click="setSubTotal(producto)">
+									      +
+									    </a>
+									  </div>
+									</div>
+				        </td>
 				      </tr>
 				    </tbody>
 				    <tfoot>
 					    <tr>
 					      <th></th>
 					      <th><abbr title="Played">Total:</abbr></th>
-					      <th>$100</th>
+					      <th>{{ total }}</th>
 					      
 					    </tr>
 					  </tfoot>
@@ -63,6 +74,9 @@ export default {
 			//falta calcular el total de la suma de los productos y el costo de envio
 			
 		},
+		setSubTotal(event){
+			console.log('hola') //set el subtotal en cada producto de la venta
+		},
 		guardar(){
 			this.setDV()
 			this.$http.post('/api/DetalleVenta', this.detalleVenta).then(res => {
@@ -85,6 +99,15 @@ export default {
 			newVenta.detalleVentaId = this.dvId
 			newVenta.fecha_venta = this.detalleVenta.fecha_venta
 		  this.$http.post('/api/Venta', newVenta).catch(err => console.log(err))
+		}
+	},
+	computed:{
+		total(){
+			let suma = 0
+			this.ventas.forEach(producto => {
+				suma += producto.sub_total
+			})
+			return suma
 		}
 	}
 };
