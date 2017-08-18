@@ -28,7 +28,13 @@
 	  <ul class="menu-list">
 	  	<li><router-link :to="{ path: '/home/clientes'} " replace><span class="has-text-white">Clientes</span></router-link></li>
 	  </ul>
-
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+		<!-- La ptmr soy un genio :v -->
 </aside>
 </template>
 

@@ -1,8 +1,60 @@
 <template>
 <div class="container">
 	<div class="columns">
-		<div class="column is-4">
-			<LineChart></LineChart>
+		<div class="column is-two-quarter">
+			<div class="card">
+				<header class="card-header">
+					<h1 class="card-header-title">Total Vendido en los ultimos meses</h1>
+				</header><!-- /header -->
+			  <div class="card-content">
+			    <div class="content">
+			      <TotalporMes></TotalporMes>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<div class="column is-one-quarter">
+			<div class="card">
+				<header class="card-header">
+					<h1 class="card-header-title">Unidades vendidas en los ultimos meses</h1>
+				</header><!-- /header -->
+			  <div class="card-content">
+			    <div class="content">
+			    	<LineChart></LineChart>  
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<div class="column is-one-quarter">
+			<div class="card">
+				<header class="card-header">
+					<h1 class="card-header-title">Total vendido hoy:</h1>
+				</header><!-- /header -->
+			  <div class="card-content">
+			    <div class="content">
+			      <p class="title is-1 has-text-centered">S/. {{ totalHoy }}</p>
+			    </div>
+			  </div>
+			  <footer class="card-footer">
+			  	<p class="card-footer-item">Fecha:</p>
+			    <p class="card-footer-item">{{new Date() | moment("add","1 days","YYYY / MM / DD")}}</p>
+			  </footer>
+			</div>
+		</div>
+		
+	</div>
+	<div class="columns">
+		<div class="column is-half">
+			<div class="card">
+				<header class="card-header">
+					<h1 class="card-header-title">Productos mas vendidos este mes</h1>
+				</header><!-- /header -->
+			  <div class="card-content">
+			    <div class="content">
+			      <ProductoNow></ProductoNow>
+			    </div>
+			  </div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -10,14 +62,34 @@
 
 <script>
 import LineChart from '@/components/Reporte/LineChart'
+import TotalporMes from '@/components/Reporte/TotalporMes'
+import ProductoNow from '@/components/Reporte/ProductoNow'
 
 export default {
   name: 'Reporte',
-  components: { LineChart },
+  components: { LineChart, TotalporMes, ProductoNow },
   data () {
     return {
-
+    	totalHoy: 0
     };
+  },
+  methods: {
+  	getVentaTotalHoy(){
+  		this.$http.post('/api/DetalleVenta/totalHoy').then(res => this.totalHoy = res.body.total)
+  	}
+  },
+  mounted(){
+  	this.getVentaTotalHoy()
   }
+
 };
 </script>
+
+<style scoped>
+.card-header{
+	background-color: #E8E9F3;
+}
+.columns {
+	background-color: #EDEEF9;
+}
+</style>

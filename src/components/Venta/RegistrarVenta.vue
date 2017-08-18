@@ -27,7 +27,7 @@
 					<div class="column is-2">
 						<b-field label="Costo Envio">
 						<div class="control has-icons-left has-icons-right">
-					    <input class="input" type="number" min="0" step=".10" v-model="dVenta.costo_envio">
+					    <input class="input" type="number" min="0" step=".10" v-model.number="dVenta.costo_envio">
 					    <span class="icon is-small is-left">
 					      <i class="fa fa-money"></i>
 					    </span>

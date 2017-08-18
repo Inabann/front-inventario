@@ -6,21 +6,25 @@
         <tr>
           <th>
 		        <b-select placeholder="Modelo" @change="setModelo">
+              <option value="">----</option>
 			        <option v-for="option in modelos" :value="option.nombre">{{ option.nombre }}</option>
 		  			</b-select>
     			</th>
           <th>
           	<b-select placeholder="Color" @change="setColor">
+              <option value="">----</option>
 			        <option v-for="option in colores" :value="option.nombre"> {{ option.nombre }}</option>
 		  			</b-select>
           </th>
           <th>
           	<b-select placeholder="Marca"  @change="setMarca">
+              <option value="">----</option>
 			        <option v-for="option in marcas" :value="option.nombre">{{ option.nombre }}</option>
 		  			</b-select>
           </th>
           <th>
           	<b-select placeholder="Tipo"  @change="setTipo">
+              <option value="">----</option>
 			        <option v-for="option in tipos" :value="option.nombre">{{ option.nombre }}</option>
 		  			</b-select>
           </th>
@@ -60,6 +64,7 @@
               <th>Marca</th>
               <th>Tipo</th>
               <th>Cantidad</th>
+              <th>Sub Total</th>
               <th>Opciones</th>
             </tr>
           </thead>
@@ -71,6 +76,16 @@
               <td>{{ venta.tipo }}</td>
               <td>{{ venta.cantidad }}</td>
               <td>
+                <div class="control" v-show="!set">
+                  <input class="input" type="number" v-model.number="venta.sub_total">
+                </div>
+                <div v-show="set">
+                  {{ venta.sub_total }}
+                </div>
+                
+              </td>
+              <td>
+                <a class="button is-primary is-small" @click="setSubTotal(venta)"><span class="icon is-small"><i class="fa fa-check"></i></span></a>
                 <a class="button is-warning is-small" @click="removeCart(venta)"><span class="icon is-small"><i class="fa fa-minus"></i></span></a>
               </td>
             </tr>
@@ -99,7 +114,9 @@ export default {
     	fModelo: '',
       fColor: '',
       fMarca: '',
-      fTipo: ''
+      fTipo: '',
+      set: false,
+      sub_total: ''
     };
   },
   methods:{
@@ -113,11 +130,19 @@ export default {
     		venta.cantidad = producto.restarCantidad
         venta.producto = producto
     		this.ventas.push(venta)
-    		this.stock[(this.stock.indexOf(producto))].cantidad -=producto.restarCantidad
+    		this.stock[(this.stock.indexOf(producto))].cantidad -= producto.restarCantidad
         producto.restarCantidad = 0
         this.$emit('ventas', this.ventas)
       }
   	},
+    setSubTotal(venta){
+      if(this.set) this.set = false
+      else {
+        this.ventas[(this.ventas.indexOf(venta))].sub_total = venta.sub_total
+        this.set = true
+        this.$emit('ventas', this.ventas)
+      }
+    },
   	removeCart(venta){
       this.stock[(this.stock.indexOf(venta.producto))].cantidad += Number(venta.cantidad)
       this.ventas.splice(this.ventas.indexOf(venta), 1)

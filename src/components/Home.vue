@@ -1,9 +1,9 @@
 <template>
   <div>
     <Navbar></Navbar> 
-      <div class="columns">
+      <div class="columns " style="margin-top: 0px; margin-left: 0px; margin-right: 0px;">
         <!--a esta clase debes agregar is-hidden para q se oculte el menu/Aside -->
-        <div class="column is-hidden-mobile" id="appmenu">
+        <div class="column is-hidden-mobile" id="appmenu" >
           <appMenu></appMenu>
         </div>
         <div class="column" id="appBody">
@@ -35,24 +35,9 @@ export default {
     margin-bottom: 0;
 }
 
-#main {
-  margin-top: 5px;
-
-}
-
-#appBody {
-   margin-right: 30px;
-   margin-left: 0px;
-   margin-top: 20px;
-
-    /*border-style: solid;
-    border-color: #ff0000 2px;*/
-
-}
  #appmenu {
   background-color: #333;
-  padding-left: 25px;
-  padding-top: 25px; 
+
  }
 
 

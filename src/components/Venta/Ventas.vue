@@ -28,7 +28,7 @@
         {{ props.row.total }}
       </b-table-column>
       <b-table-column label="Opciones" >
-        <a class="button is-danger is-small" @click="remove(props.row)" >Eliminar</a>
+        <a class="button is-danger is-small" >Eliminar</a>
       </b-table-column>
     </template>
     <div slot="empty" class="has-text-centered">
@@ -52,7 +52,7 @@ export default {
   },
   methods: {
   	getVentas(){
-  		this.$http.get('/api/DetalleVenta?filter=%7B%22include%22%3A%22cliente%22%7D').then(res => this.ventas = res.body).catch(err => console.log(err))
+  		this.$http.get('/api/DetalleVenta?filter=%7B%22order%22%3A%22fecha_venta%20DESC%22%2C%22include%22%3A%22cliente%22%7D').then(res => this.ventas = res.body).catch(err => console.log(err))
   	}
   },
   created: function(){

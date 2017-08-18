@@ -9,8 +9,8 @@
       </header>
       <section class="modal-card-body">
         <div class="content">
-        	<h1>Nota Pedido: N° 029182</h1>
-        	<p>hay q poner los demoas datos de la nota de pedido</p>
+        	<h2>Nota Pedido: N° 029182 </h2>
+        	<p>Fecha: {{ detalleVenta.fecha_venta }}</p>
         	<table>
 				    <thead>
 				      <tr>
@@ -21,23 +21,17 @@
 				    </thead>
 				    <tbody>
 				      <tr v-for="producto in ventas">
-				        <td>{{ producto.modelo +' ' +producto.color }}</td>
+				        <td>{{ producto.modelo +' ' +producto.color +' '+ producto.tipo +' '+ producto.marca}}</td>
 				        <td>{{ producto.cantidad }}</td>
-				        <td>
-									<div class="field has-addons">
-									  <div class="control">
-									    <input class="input" type="number" v-model.number="producto.sub_total">
-									  </div>
-									  <div class="control">
-									    <a class="button is-success" @click="setSubTotal(producto)">
-									      +
-									    </a>
-									  </div>
-									</div>
-				        </td>
+				        <td>{{ producto.sub_total }}</td>
 				      </tr>
 				    </tbody>
 				    <tfoot>
+				    	<tr>
+				    		<th></th>
+				    		<th>Costo Envio</th>
+				    		<th>{{ detalleVenta.costo_envio }}</th>
+				    	</tr>
 					    <tr>
 					      <th></th>
 					      <th><abbr title="Played">Total:</abbr></th>
@@ -66,16 +60,20 @@ export default {
 		return {
 			isCardModalActive: false,
 			dvId: '',
+			total : 0
 		};
 	},
 	methods:{
 		setDV(){
-			this.detalleVenta.total = 50
+			this.detalleVenta.total = this.total
 			//falta calcular el total de la suma de los productos y el costo de envio
 			
 		},
-		setSubTotal(event){
-			console.log('hola') //set el subtotal en cada producto de la venta
+		setTotal(){
+			this.ventas.forEach(producto => {
+				this.total += producto.sub_total
+			})
+			this.total += this.detalleVenta.costo_envio
 		},
 		guardar(){
 			this.setDV()
@@ -101,13 +99,10 @@ export default {
 		  this.$http.post('/api/Venta', newVenta).catch(err => console.log(err))
 		}
 	},
-	computed:{
-		total(){
-			let suma = 0
-			this.ventas.forEach(producto => {
-				suma += producto.sub_total
-			})
-			return suma
+	watch:{
+		isCardModalActive(){
+			this.total = 0
+			this.setTotal()
 		}
 	}
 };
