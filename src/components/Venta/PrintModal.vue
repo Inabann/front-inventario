@@ -1,6 +1,6 @@
 <template>
 <div>
-	<button class="button is-success is-medium" @click="isCardModalActive = true"><span class="icon"><i class="fa fa-shopping-cart"></i></span><span>Listo?</span></button>
+	<button class="button is-success is-medium" @click="isCardModalActive = true"><span class="icon"><i class="fa fa-shopping-cart"></i></span><span>Listo</span></button>
 	<b-modal :active.sync="isCardModalActive" :width="640">
 		<div class="modal-card">
 			<header class="modal-card-head">

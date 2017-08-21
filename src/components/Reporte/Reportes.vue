@@ -1,7 +1,7 @@
 <template>
 <div class="container">
 	<div class="columns">
-		<div class="column is-two-quarter">
+		<div class="column is-6">
 			<div class="card">
 				<header class="card-header">
 					<h1 class="card-header-title">Total Vendido en los ultimos meses</h1>
@@ -13,7 +13,7 @@
 			  </div>
 			</div>
 		</div>
-		<div class="column is-one-quarter">
+		<div class="column is-3">
 			<div class="card">
 				<header class="card-header">
 					<h1 class="card-header-title">Unidades vendidas en los ultimos meses</h1>
@@ -25,7 +25,7 @@
 			  </div>
 			</div>
 		</div>
-		<div class="column is-one-quarter">
+		<div class="column is-3">
 			<div class="card">
 				<header class="card-header">
 					<h1 class="card-header-title">Total vendido hoy:</h1>
@@ -44,7 +44,19 @@
 		
 	</div>
 	<div class="columns">
-		<div class="column is-half">
+		<div class="column is-6">
+			<div class="card">
+				<header class="card-header">
+					<h1 class="card-header-title">Deudores</h1>
+				</header><!-- /header -->
+			  <div class="card-content">
+			    <div class="content">
+			      <Deudas></Deudas>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<div class="column is-6">
 			<div class="card">
 				<header class="card-header">
 					<h1 class="card-header-title">Productos mas vendidos este mes</h1>
@@ -56,6 +68,7 @@
 			  </div>
 			</div>
 		</div>
+		
 	</div>
 </div>
 </template>
@@ -64,10 +77,11 @@
 import LineChart from '@/components/Reporte/LineChart'
 import TotalporMes from '@/components/Reporte/TotalporMes'
 import ProductoNow from '@/components/Reporte/ProductoNow'
+import Deudas from '@/components/Reporte/Deudas'
 
 export default {
   name: 'Reporte',
-  components: { LineChart, TotalporMes, ProductoNow },
+  components: { LineChart, TotalporMes, ProductoNow, Deudas },
   data () {
     return {
     	totalHoy: 0

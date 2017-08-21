@@ -1,39 +1,39 @@
 <template>
-	<aside class="menu" id="cssaside">
+	<aside class="menu">
   <p class="menu-label">
-   <span class="has-text-white">General</span>
+   <span >General</span>
   </p>
  <ul class="menu-list">
-	    <router-link :to="{ path: '/home' }" tag="li" replace><a><span class="has-text-white">Dashboard</span></a></router-link>
-		 <router-link :to="{ path: '/home/reportes' }" tag="li" replace><a><span class="has-text-white">Reportes</span></a></router-link>
+	   <router-link :to="{ path: '/home' }" tag="li" replace @click.native="cambiar(0)"><a :class="{ 'is-active': menu[0] }"><span>Dashboard</span></a></router-link>
+		 <router-link :to="{ path: '/home/reportes' }" tag="li" replace @click.native="cambiar(1)"><a :class="{ 'is-active': menu[1] }"><span>Reportes</span></a></router-link>
 	  </ul>
 	  <p class="menu-label">
-	    <span class="has-text-white">Inventario</span>
+	    <span >Inventario</span>
 	  </p>
 	  <ul class="menu-list">
-	    <li ><router-link :to="{ path: '/home/productos'} " replace><span class="has-text-white">Producto</span></router-link></li>
-	    <li><router-link :to="{ path: '/home/stock'} " replace><span class="has-text-white">Stock</span></router-link></li>
+	    <li ><router-link :to="{ path: '/home/productos'} " replace :class="{ 'is-active': menu[2] }" @click.native="cambiar(2)"><span>Producto</span></router-link></li>
+	    <li><router-link :to="{ path: '/home/stock'} " replace :class="{ 'is-active': menu[3] }" @click.native="cambiar(3)"><span>Stock</span></router-link></li>
 
 	  </ul>
 	  <p class="menu-label">
-	    <span class="has-text-white">VENTAS</span>
+	    <span>VENTAS</span>
 	  </p>
 	  <ul class="menu-list">
-	    <li ><router-link :to="{ path: '/home/registrar_venta'} " replace><span class="has-text-white">Nuevo</span></router-link></li>
-	   	<li ><router-link :to="{ path: '/home/ventas'} " replace><span class="has-text-white">Registro</span></router-link></li>
+	    <li ><router-link :to="{ path: '/home/registrar_venta'} " replace :class="{ 'is-active': menu[4] }" @click.native="cambiar(4)"><span >Nuevo</span></router-link></li>
+	   	<li ><router-link :to="{ path: '/home/ventas'} " replace :class="{ 'is-active': menu[5] }" @click.native="cambiar(5)"><span >Registro</span></router-link></li>
 	  </ul>
 	  <p class="menu-label">
-	  	<span class="has-text-white">Cliente</span>
+	  	<span>Cliente</span>
 	  </p>
 	  <ul class="menu-list">
-	  	<li><router-link :to="{ path: '/home/clientes'} " replace><span class="has-text-white">Clientes</span></router-link></li>
+	  	<li><router-link :to="{ path: '/home/clientes'} " replace :class="{ 'is-active': menu[6] }" @click.native="cambiar(6)"><span>Clientes</span></router-link></li>
 	  </ul>
-	  <br>
-	  <br>
-	  <br>
-	  <br>
-	  <br>
-	  <br>
+	  <br class="is-hidden-mobile">
+	  <br class="is-hidden-mobile">
+	  <br class="is-hidden-mobile">
+	  <br class="is-hidden-mobile">
+	  <br class="is-hidden-mobile">
+	  <br class="is-hidden-mobile">
 		<!-- La ptmr soy un genio :v -->
 </aside>
 </template>
@@ -46,20 +46,27 @@ export default {
 
   data () {
     return {
-
+    	menu: [true, false, false, false, false, false, false]
     };
+  },
+  methods: {
+  	cambiar(opcion){
+  		this.menu = [false, false, false, false, false, false, false]
+  		this.menu[opcion] = true
+  	}
   }
 };
 </script>
 
 <style lang="css" scoped>
-#cssaside {
-  /* margin-top: 0px;
-   margin-left: -90px;
-   padding-left: 30px; */
-
- background-color: #333;
- /*margin-top: -12px;*/
-
+.menu-label span{
+	color: white;
 }
+.menu-list span{
+	color: white;
+}
+.menu-list a:hover span {
+	color: black;
+}
+
 </style>

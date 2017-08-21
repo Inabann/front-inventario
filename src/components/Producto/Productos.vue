@@ -1,11 +1,20 @@
 <template>
   <div class="container">
-    <button class="button is-info is-medium" @click="isComponentModalActive = true; sendProducto = null ">Nuevo Producto</button><br><br>
+    <div class="columns">
+      <div class="column">
+        <h1 class="has-text-centered title"><span class="has-text-info">Productos Ingresados</span></h1>
+      </div>
+      <div class="column is-3">
+        <button class="button is-info is-medium" @click="isComponentModalActive = true; sendProducto = null ">Nuevo Producto</button><br><br>
+      </div>
+    </div>
+    
+    <!-- MODAL -->
     <b-modal :active.sync="isComponentModalActive" has-modal-card>
         <modal-form :productos="productos" :sendProducto="sendProducto" @newList="productos = $event"></modal-form>
     </b-modal>
 
-    <h1 class="has-text-centered title"><span class="has-text-info">Productos Ingresados</span></h1>
+    
     <b-field>
     <a class="button is-info" @click="buscar = !buscar"><span class="icon is-small"><i class="fa fa-search"></i></span></a>
     <b-field grouped v-if="buscar">

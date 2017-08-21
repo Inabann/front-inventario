@@ -1,12 +1,21 @@
 <template>
   <div class="container">
-    <button class="button is-info is-medium" @click="isComponentModalActive = true; sendCliente = null ">Nuevo Cliente</button><br><br>
+  <div class="columns">
+    <div class="column is-4">
+      
+      <h1 class="title is-4"><b>DIRECTORIO DE CLIENTES</b></h1>
+    </div>
+    <div class="column is-offset-4">
+      <button class="button is-info is-medium" @click="isComponentModalActive = true; sendCliente = null ">Nuevo Cliente</button>
+    </div>
+  </div>
+    
 
     <b-modal :active.sync="isComponentModalActive" has-modal-card>
         <modal-form :clientes="clientes" :sendCliente="sendCliente" @newList="clientes = $event"></modal-form>
     </b-modal>
     
-    <h1 class="title is-4"><b>DIRECTORIO DE CLIENTES</b></h1>
+    
     <b-field grouped>
       <b-input placeholder="por DNI/RUC..." type="search" icon-pack="fa" icon="search" v-model="fDni"></b-input>
       <b-input placeholder="por Nombre..." type="search" icon-pack="fa" icon="search" v-model="fNombre"></b-input>

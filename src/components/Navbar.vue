@@ -3,18 +3,16 @@
   <!-- LA PTMR LANCHIPA DEJA DE MODIFICAR EL NAVBAR; SI VAS A HACERLO SUBE UNO FUNCIONAL >:V -->
   <div class="container">
     <div class="nav-left">
-      <span class="nav-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
+      <a class="nav-item" @click="changeNav">
+        <span class="icon">
+          <i class="fa fa-bars"></i>
+        </span>
+      </a>
+      <!-- <figure class="image is-16by9">
+        <img src="../assets/logo.jpg">
+      </figure> -->
     </div>
     
-    <div class="nav-center">
-      <figure class="image is-48x48" style="margin-right: 8px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png">
-      </figure>
-    </div>
     
     <div class="nav-right nav-menu">
       <a class="nav-item is-tab">
@@ -31,12 +29,22 @@
 <script>
 export default {
   name: 'Navbar',
+  data (){
+    return {
+      hideNav : false
+    }
+  },
   methods: {
     logout(){
       this.$http.post('/api/Users/logout?access_token='+ this.$auth.getToken().token).then((res) => {
         this.$auth.destroyToken();
         this.$router.push('/');
       });
+    },
+    changeNav(){
+      this.hideNav = !this.hideNav
+      console.log(this.hideNav)
+      this.$emit('statusNav', this.hideNav)
     }
   }
 };

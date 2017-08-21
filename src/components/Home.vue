@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Navbar></Navbar> 
+    <Navbar @statusNav="statusMenu = $event"></Navbar> 
       <div class="columns " style="margin-top: 0px; margin-left: 0px; margin-right: 0px;">
         <!--a esta clase debes agregar is-hidden para q se oculte el menu/Aside -->
-        <div class="column is-hidden-mobile" id="appmenu" >
+        <div class="column" id="appmenu" :class="{ 'is-hidden': statusMenu }">
           <appMenu></appMenu>
         </div>
         <div class="column" id="appBody">
@@ -26,6 +26,11 @@ export default {
   components: {
     Navbar,
     appMenu,
+  },
+  data (){
+    return {
+      statusMenu: false
+    }
   }
 };
 </script>
@@ -36,7 +41,7 @@ export default {
 }
 
  #appmenu {
-  background-color: #333;
+  background-color: #0C6087;
 
  }
 
