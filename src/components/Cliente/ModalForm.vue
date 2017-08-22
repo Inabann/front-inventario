@@ -7,21 +7,20 @@
     </header>
     <section class="modal-card-body">
       <b-field label="DNI/RUC">
-        <b-input type="text" v-model="cliente.dni_ruc" placeholder="DNI o RUC" minlength="8" required >
+        <b-input type="text" v-model="cliente.dni_ruc" placeholder="DNI o RUC" minlength="8" required>
         </b-input>
       </b-field>
       <b-field label="Nombres">
-        <b-input type="text" v-model="cliente.nombre" placeholder="Nombres y Apellidos" minlength="5"    required>
+        <b-input type="text" v-model="cliente.nombre" placeholder="Nombres y Apellidos" minlength="5" required>
         </b-input>
       </b-field>
       <b-field label="Numero de Contacto">
-        <b-input type="text" v-model="cliente.telefono" placeholder="Celular/Telefono" minlength="6"  required></b-input>
+        <b-input type="text" v-model="cliente.telefono" placeholder="Celular/Telefono" minlength="6" required></b-input>
       </b-field>
     </section>
     <footer class="modal-card-foot ">
       <button class="button" type="button" @click="$parent.close()">Cerrar</button>
-     <!--  <button  v-show="cliente.dni_ruc && cliente.nombre && cliente.telefono" class="button is-primary" @click="saveCliente">Guardar</button> -->
-       <button  v-show="cliente.dni_ruc && cliente.nombre && cliente.telefono" class="button is-primary disabled" @click="saveCliente">Guardar</button>
+       <button  v-show="cliente.dni_ruc && cliente.nombre && cliente.telefono" class="button is-primary" @click="saveCliente">Guardar</button>
     </footer>
   </div>
 </template>
@@ -40,6 +39,7 @@
     },
     methods:{
       saveCliente(){
+        this.cliente.nombre = this.cliente.nombre.toLowerCase()
         if(this.sendCliente){
           let index = this.clientes.indexOf(this.sendCliente)
           this.$http.put('/api/Clientes/'+this.cliente.id, this.cliente).then(res => {

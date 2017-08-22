@@ -1,12 +1,13 @@
 <template>
   <div class="container">
   <div class="columns">
-    <div class="column is-4">
+    <div class="column">
       
-      <h1 class="title is-4"><b>DIRECTORIO DE CLIENTES</b></h1>
+      <h1 class="has-text-centered title"><span class="has-text-info">Directorio de Clientes</span></h1>
     </div>
     <div class="column is-offset-4">
-      <button class="button is-info is-medium" @click="isComponentModalActive = true; sendCliente = null ">Nuevo Cliente</button>
+      <button class="button is-info is-medium" @click="isComponentModalActive = true; sendCliente = null "><span class="icon">
+      <i class="fa fa-user-plus"></i></span><span>Nuevo Cliente</span></button>
     </div>
   </div>
     
@@ -26,7 +27,7 @@
           {{ props.row.dni_ruc }}
         </b-table-column>
         <b-table-column field="nombre" label="Nombres y Apellidos" sortable>
-          {{ props.row.nombre }}
+          {{ props.row.nombre | capitalize }}
         </b-table-column>
         <b-table-column field="telefono" label="Numero Contacto" sortable>
           {{ props.row.telefono }}

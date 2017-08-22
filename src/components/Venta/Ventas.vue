@@ -10,13 +10,13 @@
         </span>
       </b-table-column>
       <b-table-column field="tipo" label="Tipo"  sortable>
-        {{ props.row.tipo }}
+        {{ props.row.tipo | capitalize }}
       </b-table-column>
       <b-table-column field="clienteId" label="Cliente" sortable>
-        {{ props.row.cliente.nombre }}
+        {{ props.row.cliente.nombre | capitalize }}
       </b-table-column>
       <b-table-column field="direccion" label="Destino" sortable>
-        {{ props.row.direccion }}
+        {{ props.row.direccion | capitalize }}
       </b-table-column>
       <b-table-column field="costo_envio" label="C. Envio">
         {{ props.row.costo_envio }}

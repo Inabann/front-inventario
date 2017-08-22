@@ -3,13 +3,12 @@
 	<button class="button is-success is-medium" @click="isCardModalActive = true"><span class="icon"><i class="fa fa-shopping-cart"></i></span><span>Listo</span></button>
 	<b-modal :active.sync="isCardModalActive" :width="640">
 		<div class="modal-card">
-			<header class="modal-card-head">
+			<header class="modal-card-head" v-show="!vistaPrevia">
         <p class="modal-card-title">Vista Previa Nota de pedido</p>
         <button class="delete" @click="isCardModalActive = false"></button>
       </header>
       <section class="modal-card-body">
         <div class="content">
-        	<h2>Nota Pedido: N° 029182 </h2>
         	<p>Fecha: {{ detalleVenta.fecha_venta }}</p>
         	<table>
 				    <thead>
@@ -21,7 +20,7 @@
 				    </thead>
 				    <tbody>
 				      <tr v-for="producto in ventas">
-				        <td>{{ producto.modelo +' ' +producto.color +' '+ producto.tipo +' '+ producto.marca}}</td>
+				        <td>{{ producto.modelo +' ' +producto.color +' '+ producto.tipo +' '+ producto.marca  | capitalize }}</td>
 				        <td>{{ producto.cantidad }}</td>
 				        <td>{{ producto.sub_total }}</td>
 				      </tr>
@@ -42,7 +41,7 @@
 				  </table>
         </div>
       </section>
-      <footer class="modal-card-foot">
+      <footer class="modal-card-foot" v-show="!vistaPrevia">
         <button class="button" type="button" @click="isCardModalActive = false">Cerrar</button>
         <button class="button is-primary" @click="guardar">Guardar e Imprimir</button>
       </footer>
@@ -60,7 +59,8 @@ export default {
 		return {
 			isCardModalActive: false,
 			dvId: '',
-			total : 0
+			total : 0,
+			vistaPrevia: false
 		};
 	},
 	methods:{
@@ -83,6 +83,7 @@ export default {
 					this.saveVenta(venta)
 					this.$http.post('/api/Productos/reducir', venta).catch(err => console.log(err))
 				})
+				this.vistaPrevia = true
 			})
 		},
 		saveVenta(venta){

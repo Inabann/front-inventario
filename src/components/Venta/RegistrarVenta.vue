@@ -7,7 +7,7 @@
 					<div class="column is-2">
 						<b-field label="Cliente">
 			    		<b-select placeholder="Cliente" icon="user" v-model="dVenta.clienteId">
-				      	<option v-for="cliente in clientes" :value="cliente.id" >{{ cliente.nombre }}</option>
+				      	<option v-for="cliente in clientes" :value="cliente.id" >{{ cliente.nombre | capitalize }}</option>
 				    	</b-select>
 		    		</b-field>
 					</div>
@@ -87,9 +87,9 @@ export default {
   		})
   	},
   	createDVenta(){
+  		this.dVenta.direccion = this.dVenta.direccion.toLowerCase()
   		this.$http.post('/api/DetalleVenta', this.dVenta).then(res => {
   			this.dVenta.id = res.body.id
-  			console.log(this.dVenta.id)
   			this.showProductos = true //cambiar a falso cuando termine
   		})
   	}

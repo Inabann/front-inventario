@@ -1,7 +1,7 @@
 <template>
 <nav class="nav has-shadow hero is-dark">
   <!-- LA PTMR LANCHIPA DEJA DE MODIFICAR EL NAVBAR; SI VAS A HACERLO SUBE UNO FUNCIONAL >:V -->
-  <div class="container">
+  <div class="container is-fluid">
     <div class="nav-left">
       <a class="nav-item" @click="changeNav">
         <span class="icon">
@@ -14,7 +14,7 @@
     </div>
     
     
-    <div class="nav-right nav-menu">
+    <div class="nav-right nav-menu" style="margin-right: 40px;">
       <a class="nav-item is-tab">
         <figure class="image is-24x24" style="margin-right: 8px;">
           <img src="https://image.freepik.com/iconos-gratis/perfil-silueta-usuario_318-40557.jpg">
@@ -43,7 +43,6 @@ export default {
     },
     changeNav(){
       this.hideNav = !this.hideNav
-      console.log(this.hideNav)
       this.$emit('statusNav', this.hideNav)
     }
   }
@@ -54,4 +53,5 @@ export default {
 #cssNav{
 background-color: #3c8dbc;
 }
+
 </style>

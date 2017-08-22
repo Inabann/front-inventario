@@ -44,7 +44,7 @@
 		  <p class="control" v-if="actions">
 		    <span class="select">
 		      <select v-model="editModelo" @change="onChange">
-		        <option v-for="modelo in modelos" :value="modelo">{{ modelo.nombre }}</option>
+		        <option v-for="modelo in modelos" :value="modelo">{{ modelo.nombre | capitalize }}</option>
 		      </select>
 		    </span>
 		  </p>
@@ -78,6 +78,7 @@ export default {
       });
     },
     addModelo(){
+      this.editModelo.nombre = this.editModelo.nombre.toLowerCase()
     	this.$http.post('/api/'+this.atrib, {nombre: this.editModelo.nombre}).then((res)=>{
     		let vm = this;
     		vm.editModelo = res.body;

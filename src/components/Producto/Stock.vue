@@ -11,16 +11,16 @@
 
     <template scope="props">
       <b-table-column field="_id.modelo" label="Modelo"  sortable>
-        {{ props.row._id.modelo }}
+        {{ props.row._id.modelo | capitalize }}
       </b-table-column>
       <b-table-column field="_id.color" label="Color" sortable>
-        {{ props.row._id.color }}
+        {{ props.row._id.color | capitalize }}
       </b-table-column>
       <b-table-column field="_id.marca" label="Marca" sortable>
-        {{ props.row._id.marca }}
+        {{ props.row._id.marca | capitalize }}
       </b-table-column>
       <b-table-column field="_id.tipo" label="Tipo" sortable>
-        {{ props.row._id.tipo }}
+        {{ props.row._id.tipo | capitalize }}
       </b-table-column>
       <b-table-column field="cantidad" label="Cantidad" sortable>
         {{ props.row.cantidad }}
@@ -60,7 +60,7 @@ export default {
   computed: {
     filteredStock: function(){
       return this.stock.filter((producto) => {
-        return producto._id.modelo.match(this.filter) && producto._id.color.match(this.fColor) && producto._id.marca.match(this.fMarca) && producto._id.tipo.match(this.fTipo) ;
+        return producto._id.modelo.match(this.filter.toLowerCase()) && producto._id.color.match(this.fColor.toLowerCase()) && producto._id.marca.match(this.fMarca.toLowerCase()) && producto._id.tipo.match(this.fTipo.toLowerCase()) ;
         //para usar mas de un filtro usar ejemplo ;v
         //blog.title.match(search1) || blog.content.match(search2)
       });

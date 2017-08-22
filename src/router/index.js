@@ -8,6 +8,7 @@ import Producto from '@/components/Producto/Productos'
 import Stock from '@/components/Producto/Stock'
 import RegistrarVenta from '@/components/Venta/RegistrarVenta'
 import Ventas from '@/components/Venta/Ventas'
+import Dashboard from '@/components/Dashboard/Dashboard'
 
 
 
@@ -56,6 +57,10 @@ export default new Router({
         {
           path: 'ventas',
           component: Ventas
+        },
+        {
+          path: 'dashboard',
+          component: Dashboard
         }
       ]
     },
