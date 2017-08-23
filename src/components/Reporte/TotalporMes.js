@@ -21,7 +21,7 @@ export default Line.extend({
   			datasets: [
   				{label: 'vendido $$', data: this.cantidad, backgroundColor: '#0FA3B1'}
   			]
-  		}, {legend: {display : false}})
+  		}, {legend: {display : false}, maintainAspectRatio: false})
   	}
   }
 })

@@ -3,33 +3,15 @@
 	<HoyCards :hoy="hoy"></HoyCards>
 	<div class="columns">
 		<div class="column">
-			aqui grafico de ventas de los ultimos 7 dias
+			<Last7Days></Last7Days>
 		</div>
 	</div>
 	<div class="columns">
 		<div class="column">
-			<div class="card">
-				<header class="card-header">
-					<h1 class="card-header-title">Ventas</h1>
-				</header><!-- /header -->
-			  <div class="card-content">
-			    <div class="content">
-			      tabla de ventas de hoy
-			    </div>
-			  </div>
-			</div>
+			<Ventas :hoy="hoy"></Ventas>
 		</div>
 		<div class="column">
-			<div class="card">
-				<header class="card-header">
-					<h1 class="card-header-title">Productos Ingresados</h1>
-				</header><!-- /header -->
-			  <div class="card-content">
-			    <div class="content">
-			      <Productos :hoy="hoy"></Productos>
-			    </div>
-			  </div>
-			</div>
+			<Productos :hoy="hoy"></Productos>
 		</div>
 	</div>
 </div>
@@ -39,9 +21,11 @@
 <script>
 import HoyCards from '@/components/Dashboard/HoyCards'
 import Productos from '@/components/Dashboard/Productos'
+import Ventas from '@/components/Dashboard/Ventas'
+import Last7Days from '@/components/Dashboard/Last7Days'
 
 export default {
-	components: { HoyCards, Productos },
+	components: { HoyCards, Productos, Ventas, Last7Days },
   name: 'Dashboard',
 
   data () {

@@ -25,8 +25,8 @@ router.beforeEach(
 	(to, from, next) => {
 		if(to.matched.some(record => record.meta.forVisitors)) {
 			if(Vue.auth.isAuthd()){
-				if(to.path !== '/home'){
-					next('/home')
+				if(to.path !== '/home/dashboard'){
+					next('/home/dashboard')
 				}
 				
 			} else{

@@ -4,7 +4,7 @@
   <div class="container is-fluid">
     <div class="nav-left">
       <a class="nav-item" @click="changeNav">
-        <span class="icon">
+        <span class="icon is-white">
           <i class="fa fa-bars"></i>
         </span>
       </a>
@@ -13,11 +13,6 @@
     
     
     <div class="nav-right nav-menu" style="margin-right: 40px;">
-      <a class="nav-item is-tab">
-        <figure class="image is-24x24" style="margin-right: 8px;">
-          <img src="https://image.freepik.com/iconos-gratis/perfil-silueta-usuario_318-40557.jpg">
-        </figure><span class="has-text-white">Perfil</span> 
-      </a>
       <a class="nav-item is-tab" @click="logout()"><span class="has-text-white">Cerrar Sesión</span></a>
     </div>
   </div>

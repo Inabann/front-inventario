@@ -1,14 +1,6 @@
 <template>
-<div class="container">
-	<h1 class="title is-3 has-text-centered"><span class="has-text-info">Registro de Ventas Realizadas</span></h1>
-	<b-table :data="ventas" :mobile-cards="true" :paginated="true" :per-page="10" >
+	<b-table :data="ventas" :mobile-cards="true" :paginated="true" :per-page="10" :narrowed="true">
     <template scope="props">
-    	<b-table-column field="fecha_venta" label="F. Venta" sortable>
-        <span class="tag is-success">
-          <!-- {{ new Date(props.row.fecha_ingreso).toLocaleDateString() }} -->
-          {{ props.row.fecha_venta  | moment("add","1 days","YYYY / MM / DD") }}
-        </span>
-      </b-table-column>
       <b-table-column field="tipo" label="Tipo"  sortable>
         {{ props.row.tipo | capitalize }}
       </b-table-column>
@@ -18,16 +10,16 @@
       <b-table-column field="direccion" label="Destino" sortable>
         {{ props.row.direccion | capitalize }}
       </b-table-column>
-      <b-table-column field="costo_envio" label="C. Envio">
+      <b-table-column field="costo_envio" label="C.Envio">
         {{ props.row.costo_envio }}
       </b-table-column>
-      <b-table-column field="" label="Productos">
+<!--       <b-table-column field="" label="Productos">
         <ListaProductos :detalleVentaId="props.row.id"></ListaProductos>
-      </b-table-column>
+      </b-table-column> -->
       <b-table-column field="total" label="Total" numeric>
         {{ props.row.total }}
       </b-table-column>
-      <b-table-column label="Opciones">
+      <b-table-column label="Opciones" width="40" >
         <a class="button is-primary is-small" >Ver</a>
       </b-table-column>
     </template>
@@ -35,28 +27,30 @@
       Cargando ...
     </div>
   </b-table>
-</div>
 </template>
 
 <script>
 import ListaProductos from '@/components/Venta/ListaProductos'
 
 export default {
-
+	components: { ListaProductos },
   name: 'Ventas',
-  components: { ListaProductos },
+  props: ['hoy'],
   data () {
     return {
     	ventas: []
     };
   },
-  methods: {
-  	getVentas(){
-  		this.$http.get('/api/DetalleVenta?filter=%7B%22order%22%3A%22fecha_venta%20DESC%22%2C%22include%22%3A%22cliente%22%7D').then(res => this.ventas = res.body).catch(err => console.log(err))
+  methods:{
+  	getProductos(){
+  		this.$http.get('/api/DetalleVenta?filter=%7B%22where%22%3A%7B%22fecha_venta%22%3A%22'+this.hoy+'%22%7D%2C%22include%22%3A%22cliente%22%7D').then(res => {
+  			this.ventas = res.body
+  			console.log(res.body)
+  		})
   	}
   },
-  created: function(){
-  	this.getVentas()
+  mounted(){
+  	this.getProductos()
   }
 };
 </script>

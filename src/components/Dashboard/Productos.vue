@@ -13,18 +13,15 @@
       <b-table-column field="tiposId" label="Tipo" sortable>
         {{ props.row.tiposId | capitalize }}
       </b-table-column>
-      <b-table-column field="cantidad" label="Cantidad" numeric sortable  width="30">
+      <b-table-column field="cantidad" label="Cantidad" numeric sortable>
         {{ props.row.cantidad | capitalize }}
       </b-table-column>
-      <b-table-column field="precio_uni" label="P. Uni" numeric  width="40">
+      <b-table-column field="precio_uni" label="P.U." numeric >
         {{ props.row.precio_uni }}
-      </b-table-column>
-      <b-table-column label="Opciones" width="40" >
-        <a class="button is-warning is-small" @click="edit()">Ver</a>
       </b-table-column>
     </template>
     <div slot="empty" class="has-text-centered">
-      Cargando ...
+      No hay nuevos productos ...
     </div>
   </b-table>
 </template>

@@ -13,7 +13,7 @@
 			  </div>
 			</div>
 		</div>
-		<div class="column is-3">
+		<div class="column is-6">
 			<div class="card">
 				<header class="card-header">
 					<h1 class="card-header-title">Unidades vendidas en los ultimos meses</h1>
@@ -23,22 +23,6 @@
 			    	<LineChart></LineChart>  
 			    </div>
 			  </div>
-			</div>
-		</div>
-		<div class="column is-3">
-			<div class="card">
-				<header class="card-header">
-					<h1 class="card-header-title">Total vendido hoy:</h1>
-				</header><!-- /header -->
-			  <div class="card-content">
-			    <div class="content">
-			      <p class="title is-1 has-text-centered">S/. {{ totalHoy }}</p>
-			    </div>
-			  </div>
-			  <footer class="card-footer">
-			  	<p class="card-footer-item">Fecha:</p>
-			    <p class="card-footer-item">{{new Date() | moment("add","1 days","YYYY / MM / DD")}}</p>
-			  </footer>
 			</div>
 		</div>
 		
