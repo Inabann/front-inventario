@@ -41,9 +41,8 @@ export default {
 }
 
  #appmenu {
-  background-color: #0C6087;
+  background-color: #3A3B4A;
 
  }
-
 
 </style>

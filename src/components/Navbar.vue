@@ -1,5 +1,5 @@
 <template>
-<nav class="nav has-shadow hero is-dark">
+<nav class="nav has-shadow hero" id="cssNav">
   <!-- LA PTMR LANCHIPA DEJA DE MODIFICAR EL NAVBAR; SI VAS A HACERLO SUBE UNO FUNCIONAL >:V -->
   <div class="container is-fluid">
     <div class="nav-left">
@@ -49,7 +49,7 @@ export default {
 
 <style lang="css" scoped>
 #cssNav{
-background-color: #3c8dbc;
+background-color: #0374BA;
 }
 
 </style>
