@@ -8,9 +8,7 @@
           <i class="fa fa-bars"></i>
         </span>
       </a>
-      <!-- <figure class="image is-16by9">
-        <img src="../assets/logo.jpg">
-      </figure> -->
+        <img src="../assets/logo.png">
     </div>
     
     
