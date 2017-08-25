@@ -4040,6 +4040,10 @@ vue-hot-reload-api@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.1.0.tgz#9ca58a6e0df9078554ce1708688b6578754d86de"
 
+vue-json-excel@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/vue-json-excel/-/vue-json-excel-0.0.7.tgz#ba234799e1e24f29dd0746f5a467ca5cb4415f8a"
+
 vue-loader@^12.1.0:
   version "12.2.2"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-12.2.2.tgz#2b3a764f27018f975bc78cb8b1f55137548ee2d7"

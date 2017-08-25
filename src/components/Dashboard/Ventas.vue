@@ -13,14 +13,11 @@
       <b-table-column field="costo_envio" label="C.Envio">
         {{ props.row.costo_envio }}
       </b-table-column>
-<!--       <b-table-column field="" label="Productos">
-        <ListaProductos :detalleVentaId="props.row.id"></ListaProductos>
-      </b-table-column> -->
       <b-table-column field="total" label="Total" numeric>
         {{ props.row.total }}
       </b-table-column>
       <b-table-column label="Opciones" width="40" >
-        <a class="button is-primary is-small" >Ver</a>
+        <VerVenta :detalleVenta="props.row"></VerVenta>
       </b-table-column>
     </template>
     <div slot="empty" class="has-text-centered">
@@ -31,9 +28,10 @@
 
 <script>
 import ListaProductos from '@/components/Venta/ListaProductos'
+import VerVenta from '@/components/Dashboard/VerVenta'
 
 export default {
-	components: { ListaProductos },
+	components: { ListaProductos, VerVenta },
   name: 'Ventas',
   props: ['hoy'],
   data () {
@@ -45,7 +43,6 @@ export default {
   	getProductos(){
   		this.$http.get('/api/DetalleVenta?filter=%7B%22where%22%3A%7B%22fecha_venta%22%3A%22'+this.hoy+'%22%7D%2C%22include%22%3A%22cliente%22%7D').then(res => {
   			this.ventas = res.body
-  			console.log(res.body)
   		})
   	}
   },

@@ -42,7 +42,7 @@
       <b-table-column field="cantidad" label="Cantidad" numeric sortable>
         {{ props.row.cantidad | capitalize }}
       </b-table-column>
-      <b-table-column field="precio_uni" label="P. Uni" numeric>
+      <b-table-column field="precio_uni" label="Precio" numeric>
         {{ props.row.precio_uni }}
       </b-table-column>
       <b-table-column field="fecha_ingreso" label="F. Ingreso" sortable>

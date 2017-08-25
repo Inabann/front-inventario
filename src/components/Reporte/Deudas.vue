@@ -1,5 +1,5 @@
 <template>
-  <b-table :data="deudas" :mobile-cards="true" :paginated="true" :per-page="10" :narrowed="true">
+  <b-table :data="deudas" :mobile-cards="true" :paginated="true" :per-page="7" :narrowed="true">
     <template scope="props">
     	<b-table-column field="fecha_venta" label="F. Venta" width="20" sortable>
         <span class="tag is-success">
@@ -17,7 +17,7 @@
         {{ props.row.total }}
       </b-table-column>
       <b-table-column label="Opciones" width="40" >
-        <a class="button is-warning is-small" @click="edit()">Pagar Deuda</a>
+        <a class="button is-warning is-small" @click="pagar(props.row)">Pagar Deuda</a>
       </b-table-column>
     </template>
     <div slot="empty" class="has-text-centered">
@@ -39,7 +39,19 @@ export default {
   methods: {
   	getDeudas(){
   		this.$http.get('/api/DetalleVenta?filter=%7B%22order%22%3A%22fecha_venta%20DESC%22%2C%22include%22%3A%22cliente%22%2C%20%22where%22%3A%7B%22tipo%22%3A%22credito%22%7D%7D').then(res => this.deudas = res.body).catch( err => console.log(err))
-  	}
+  	},
+    pagar(dVenta){
+      dVenta.tipo = 'pagado'
+      let d = new Date()
+      let y = d.getFullYear()
+      let m = d.getMonth()+1
+      let day = d.getDate()
+      dVenta.fecha_venta = y+'-'+m+'-'+day
+      this.$http.put('/api/DetalleVenta/'+dVenta.id, dVenta).then((err, res)=>{
+        if(err) console.log(err)
+        this.deudas.splice(this.deudas.indexOf(dVenta), 1)
+      })
+    }
   },
   mounted(){
   	this.getDeudas()

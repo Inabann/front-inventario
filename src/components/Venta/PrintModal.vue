@@ -43,7 +43,7 @@
       </section>
       <footer class="modal-card-foot" v-show="!vistaPrevia">
         <button class="button" type="button" @click="isCardModalActive = false">Cerrar</button>
-        <button class="button is-primary" @click="guardar">Guardar e Imprimir</button>
+        <button class="button is-primary" @click="guardar">Guardar</button>
       </footer>
 		</div>
 	</b-modal>
@@ -65,9 +65,7 @@ export default {
 	},
 	methods:{
 		setDV(){
-			this.detalleVenta.total = this.total
-			//falta calcular el total de la suma de los productos y el costo de envio
-			
+			this.detalleVenta.total = this.total		
 		},
 		setTotal(){
 			this.ventas.forEach(producto => {
