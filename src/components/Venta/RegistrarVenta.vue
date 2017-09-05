@@ -1,6 +1,13 @@
 <template>
 	<div class="container">
-		<h2 class="has-text-centered title is-3"><span class="has-text-info">Registrar Nueva Venta</span></h2>
+		<div class="columns">
+			<div class="column">
+				<h2 class="has-text-centered title is-3"><span class="has-text-info">Registrar Nueva Venta</span></h2>
+			</div>
+			<div class="column  is-offset-4">
+				<PrintModal :ventas="ventas" :detalleVenta="dVenta"></PrintModal>
+			</div>
+		</div>
 		<div class="card">
 			<div class="card-content">
 				<div class="columns">
@@ -52,8 +59,6 @@
 		</div>
 		<br>
 		<MostrarStock @ventas="ventas = $event"></MostrarStock>
-		<br>
-		<PrintModal :ventas="ventas" :detalleVenta="dVenta"></PrintModal>
 	</div>
 </template>
 

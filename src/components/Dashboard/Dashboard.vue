@@ -38,6 +38,7 @@ export default {
 		let y = hoy.getFullYear()
 		let m = hoy.getMonth() +1
 		let d = hoy.getDate()
+		if (d < 10) d = '0'+d
 		if (m < 10) m = '0'+m
 		this.hoy = y+'-'+m+'-'+d
   }

@@ -5,7 +5,9 @@
         {{ props.row.tipo | capitalize }}
       </b-table-column>
       <b-table-column field="clienteId" label="Cliente" sortable>
-        {{ props.row.cliente.nombre | capitalize }}
+        <div v-if="props.row.cliente">
+          {{ props.row.cliente.nombre | capitalize }}
+        </div>
       </b-table-column>
       <b-table-column field="direccion" label="Destino" sortable>
         {{ props.row.direccion | capitalize }}
@@ -17,7 +19,12 @@
         {{ props.row.total }}
       </b-table-column>
       <b-table-column label="Opciones" width="40" >
-        <VerVenta :detalleVenta="props.row"></VerVenta>
+        <div v-if="props.row.cliente">
+          <VerVenta :detalleVenta="props.row" ></VerVenta>
+        </div>
+        <div v-if="!props.row.cliente">
+          <VerVentaSinCliente :detalleVenta="props.row" ></VerVentaSinCliente>
+        </div>
       </b-table-column>
     </template>
     <div slot="empty" class="has-text-centered">
@@ -29,9 +36,10 @@
 <script>
 import ListaProductos from '@/components/Venta/ListaProductos'
 import VerVenta from '@/components/Dashboard/VerVenta'
+import VerVentaSinCliente from '@/components/Dashboard/VerVentaSinCliente'
 
 export default {
-	components: { ListaProductos, VerVenta },
+	components: { ListaProductos, VerVenta, VerVentaSinCliente },
   name: 'Ventas',
   props: ['hoy'],
   data () {

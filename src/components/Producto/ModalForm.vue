@@ -43,7 +43,7 @@
           <div class="field">
             <label class="label">Precio</label>
             <div class="control">
-              <input class="input" type="number" placeholder="Precio unitario" v-model="producto.precio_uni">
+              <input class="input" type="number" placeholder="Precio" v-model="producto.precio_uni">
             </div>
           </div>
         </div>

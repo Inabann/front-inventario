@@ -13,6 +13,7 @@
     
     
     <div class="nav-right nav-menu" style="margin-right: 40px;">
+      <a class="nav-item is-tab"><span class="has-text-white">{{ username }}</span></a>
       <a class="nav-item is-tab" @click="logout()"><span class="has-text-white">Cerrar Sesión</span></a>
     </div>
   </div>
@@ -24,7 +25,9 @@ export default {
   name: 'Navbar',
   data (){
     return {
-      hideNav : false
+      hideNav : false,
+      at: '',
+      username: ''
     }
   },
   methods: {
@@ -38,6 +41,10 @@ export default {
       this.hideNav = !this.hideNav
       this.$emit('statusNav', this.hideNav)
     }
+  },
+  created(){
+    this.at = this.$auth.getToken()
+    this.$http.get('/api/usuarios/'+this.at.userId+'?access_token='+this.at.token).then( res => this.username = res.body.username)
   }
 };
 </script>

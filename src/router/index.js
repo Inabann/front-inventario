@@ -9,6 +9,7 @@ import Stock from '@/components/Producto/Stock'
 import RegistrarVenta from '@/components/Venta/RegistrarVenta'
 import Ventas from '@/components/Venta/Ventas'
 import Dashboard from '@/components/Dashboard/Dashboard'
+import Usuario from '@/components/Usuario/Usuarios'
 
 
 
@@ -61,6 +62,10 @@ export default new Router({
         {
           path: 'dashboard',
           component: Dashboard
+        },
+        {
+          path: 'usuarios',
+          component: Usuario
         }
       ]
     },

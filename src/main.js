@@ -10,7 +10,6 @@ import Vue2Filters from 'vue2-filters'
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 
-
 Vue.config.productionTip = false
 
 Vue.use(vueResource)
@@ -40,7 +39,6 @@ router.beforeEach(
 				if(to.path !== '/'){
 					next('/')
 				}
-				
 			} else{
 				next()
 			}

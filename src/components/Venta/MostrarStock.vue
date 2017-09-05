@@ -64,6 +64,7 @@
               <th>Marca</th>
               <th>Tipo</th>
               <th>Cantidad</th>
+              <th>P Unitario</th>
               <th>Sub Total</th>
               <th>Opciones</th>
             </tr>
@@ -77,13 +78,14 @@
               <td>{{ venta.cantidad }}</td>
               <td>
                 <div class="control" v-show="!set">
-                  <input class="input" type="number" v-model.number="venta.sub_total">
+                  <input class="input" type="number" v-model.number="venta.precio_uni">
                 </div>
                 <div v-show="set">
-                  {{ venta.sub_total }}
+                  {{ venta.precio_uni }}
                 </div>
                 
               </td>
+              <td>{{ venta.cantidad * venta.precio_uni }}</td>
               <td>
                 <a class="button is-primary is-small" @click="setSubTotal(venta)"><span class="icon is-small"><i class="fa fa-check"></i></span></a>
                 <a class="button is-warning is-small" @click="removeCart(venta)"><span class="icon is-small"><i class="fa fa-minus"></i></span></a>
@@ -138,7 +140,8 @@ export default {
     setSubTotal(venta){
       if(this.set) this.set = false
       else {
-        this.ventas[(this.ventas.indexOf(venta))].sub_total = venta.sub_total
+        this.ventas[(this.ventas.indexOf(venta))].precio_uni = venta.precio_uni
+        this.ventas[(this.ventas.indexOf(venta))].sub_total = venta.cantidad * venta.precio_uni
         this.set = true
         this.$emit('ventas', this.ventas)
       }

@@ -7,17 +7,24 @@
         </span>
       </b-table-column>
       <b-table-column field="clienteId" label="Cliente" width="40" sortable>
-        {{ props.row.cliente.nombre }}
+        {{ props.row.cliente.nombre | capitalize }}
       </b-table-column>
-      <b-table-column field="direccion" label="Destino" width="40" sortable>
-        {{ props.row.direccion }}
+      <b-table-column field="direccion" label="Destino" width="20" sortable>
+        {{ props.row.direccion | capitalize }}
       </b-table-column>
 
-      <b-table-column field="total" label="Total" width="40" numeric>
+      <b-table-column field="total" label="Total" width="10" numeric>
         {{ props.row.total }}
       </b-table-column>
-      <b-table-column label="Opciones" width="40" >
-        <a class="button is-warning is-small" @click="pagar(props.row)">Pagar Deuda</a>
+      <b-table-column label="Opciones" >
+        <div class="field is-grouped">
+          <p class="control">
+            <VerVenta :detalleVenta="props.row"></VerVenta>
+          </p>
+          <p class="control">
+            <a class="button is-warning is-small" @click="pagar(props.row)">Pagar</a>
+          </p>
+        </div>
       </b-table-column>
     </template>
     <div slot="empty" class="has-text-centered">
@@ -27,9 +34,11 @@
 </template>
 
 <script>
+import VerVenta from '@/components/Dashboard/VerVenta'
 //Pagar deuda: se agregara al dia y se creara un nuevo detalleVenta co tipo PAGADO || solo se editara el tipo del detalleVenta
 export default {
-
+  components: { VerVenta },
+  props:['fecha'],
   name: 'Deudas',
   data () {
     return {
@@ -40,6 +49,9 @@ export default {
   	getDeudas(){
   		this.$http.get('/api/DetalleVenta?filter=%7B%22order%22%3A%22fecha_venta%20DESC%22%2C%22include%22%3A%22cliente%22%2C%20%22where%22%3A%7B%22tipo%22%3A%22credito%22%7D%7D').then(res => this.deudas = res.body).catch( err => console.log(err))
   	},
+    getDeudasFecha(){
+      this.$http.post('/api/DetalleVenta/deudoresMes', {fecha: this.fecha}).then(res => this.deudas = res.body).catch( err => console.log(err))
+    },
     pagar(dVenta){
       dVenta.tipo = 'pagado'
       let d = new Date()
@@ -51,6 +63,12 @@ export default {
         if(err) console.log(err)
         this.deudas.splice(this.deudas.indexOf(dVenta), 1)
       })
+    }
+  },
+  watch:{
+    fecha: function(value){
+      console.log(this.fecha)
+      this.getDeudasFecha()
     }
   },
   mounted(){

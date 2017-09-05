@@ -4,8 +4,7 @@
   <div class="field is-grouped is-grouped-right">
     <p class="control"><input type="number" class="input" v-model="year" style="width: 70px" min="2017"></p>
     <p class="control"><input type="number" class="input" v-model="month" style="width: 60px" min="1" max="12"></p> 
-    <a class="button is-primary" @click="generarExcel"><span>Generar Excel</span></a>
-    <JsonExcel class="button is-primary" :data="json_data" :fields="json_fields" name="filename.xls">Generar Excel2</JsonExcel>
+    <JsonExcel class="button is-primary" :data="json_data" :fields="json_fields" name="filename.xls">Generar Excel</JsonExcel>
   </div>
 	<b-table :data="ventas" :mobile-cards="true" :paginated="true" :per-page="10" >
     <template scope="props">
@@ -19,7 +18,9 @@
         {{ props.row.tipo | capitalize }}
       </b-table-column>
       <b-table-column field="clienteId" label="Cliente" sortable>
-        {{ props.row.cliente.nombre | capitalize }}
+        <div v-if="props.row.cliente">
+          {{ props.row.cliente.nombre | capitalize }}
+        </div>
       </b-table-column>
       <b-table-column field="direccion" label="Destino" sortable>
         {{ props.row.direccion | capitalize }}
@@ -34,7 +35,12 @@
         {{ props.row.total }}
       </b-table-column>
       <b-table-column label="Opciones">
-        <VerVenta :detalleVenta="props.row"></VerVenta>
+        <div v-if="props.row.cliente">
+          <VerVenta :detalleVenta="props.row" ></VerVenta>
+        </div>
+        <div v-if="!props.row.cliente">
+          <VerVentaSinCliente :detalleVenta="props.row" ></VerVentaSinCliente>
+        </div>
       </b-table-column>
     </template>
     <div slot="empty" class="has-text-centered">
@@ -47,12 +53,13 @@
 <script>
 import ListaProductos from '@/components/Venta/ListaProductos'
 import VerVenta from '@/components/Dashboard/VerVenta'
+import VerVentaSinCliente from '@/components/Dashboard/VerVentaSinCliente'
 import JsonExcel from 'vue-json-excel'
 
 export default {
 
   name: 'Ventas',
-  components: { ListaProductos, VerVenta, JsonExcel },
+  components: { ListaProductos, VerVenta, JsonExcel, VerVentaSinCliente },
   data () {
     return {
     	ventas: [],
@@ -64,6 +71,13 @@ export default {
         cliente: 'String',
         direccion: 'String',
         "costo envio": 'Number',
+        modelo: 'String',
+        color: 'String',
+        marca: 'String',
+        tipo: 'String',
+        cantidad: 'Number',
+        "precio unitario": 'Number',
+        subtotal: 'Number',
         total: 'Number'
       },
       json_data : []
@@ -77,18 +91,59 @@ export default {
       this.json_data = []
       this.$http.post('/api/DetalleVenta/GenerarExcel', {fecha: this.year+'-'+this.month+'-15'}).then(res => {
         let lista = res.body
+        let flag = 'asdasd'
         lista.forEach(item => {
-          this.json_data.push({
-            fecha: item.fecha_venta,
-            dni_ruc: item.cliente_nombre[0].dni_ruc,
-            cliente: item.cliente_nombre[0].nombre,
-            direccion: item.direccion,
-            "costo envio": item.costo_envio,
-            total: item.total
-          })
-        })
-        console.log(this.json_data)
-        
+          if(flag != item.id){
+            this.json_data.push({
+              fecha: item.fecha_venta.slice(0,10),
+              dni_ruc: item.cliente.dni_ruc,
+              cliente: item.cliente.nombre,
+              direccion: item.direccion,
+              "costo envio": item.costo_envio,
+              modelo: ' ',
+              color: ' ',
+              marca: ' ',
+              tipo: ' ',
+              cantidad: ' ',
+              "precio unitario": ' ',
+              subtotal: ' ',
+              total: item.total
+            })
+            this.json_data.push({
+              fecha: ' ',
+              dni_ruc: ' ',
+              cliente: ' ',
+              direccion: ' ',
+              "costo envio": ' ',
+              modelo: item.productos.modelosId,
+              color: item.productos.colorsId,
+              marca: item.productos.marcasId,
+              tipo: item.productos.tiposId,
+              cantidad: item.productos.cantidad,
+              "precio unitario": item.productos.precio_uni,
+              subtotal: item.productos.subtotal,
+              total: ' '
+            })
+            flag = item.id
+          } else{
+            this.json_data.push({
+              fecha: ' ',
+              dni_ruc: ' ',
+              cliente: ' ',
+              direccion: ' ',
+              "costo envio": ' ',
+              modelo: item.productos.modelosId,
+              color: item.productos.colorsId,
+              marca: item.productos.marcasId,
+              tipo: item.productos.tiposId,
+              cantidad: item.productos.cantidad,
+              "precio unitario": item.productos.precio_uni,
+              subtotal: item.productos.subtotal,
+              total: ' '
+            })
+          }
+          
+        })       
       })
     }
   },

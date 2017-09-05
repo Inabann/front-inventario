@@ -39,7 +39,6 @@ export default {
 .columns:last-child {
     margin-bottom: 0;
 }
-
  #appmenu {
   background-color: #3A3B4A;
 

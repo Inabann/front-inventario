@@ -56,13 +56,13 @@ export default {
   },
   methods: {
   	getVentaTotalHoy(){
-  		this.$http.post('/api/DetalleVenta/totalHoy').then(res => {
+  		this.$http.post('/api/DetalleVenta/totalHoy', {userId: this.$auth.getToken().userId}).then(res => {
   			this.totalHoy = res.body.total
   			this.creditoHoy = res.body.credito
   		})
   	},
   	getVentasHoy(){
-  		this.$http.get('/api/DetalleVenta/count?where=%7B%22fecha_venta%22%3A%22'+this.hoy+'%22%7D').then(res => this.ventasHoy = res.body.count)
+  		this.$http.get('/api/DetalleVenta/count?where=%7B%22fecha_venta%22%3A%22'+this.hoy+'%22%2C%22usuarioId%22%3A%22'+this.$auth.getToken().userId+'%22%7D').then(res => this.ventasHoy = res.body.count)
   	}
   },
   mounted(){

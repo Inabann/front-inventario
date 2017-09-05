@@ -32,10 +32,14 @@
 			<div class="card">
 				<header class="card-header">
 					<h1 class="card-header-title">Deudores</h1>
+					<div class="field is-grouped is-grouped-right card-header-icon">
+					<p class="control"><input type="number" class="input is-small" v-model="dYear" style="width: 60px"></p>
+					<p class="control"><input type="number" class="input is-small" v-model="dMonth" style="width: 60px"></p>	
+					</div>
 				</header><!-- /header -->
 			  <div class="card-content">
 			    <div class="content">
-			      <Deudas></Deudas>
+			      <Deudas :fecha="dfecha"></Deudas>
 			    </div>
 			  </div>
 			</div>
@@ -113,7 +117,9 @@ export default {
     	year: 0,
     	month: 0,
     	cYear: 0,
-    	cMonth: 0
+    	cMonth: 0,
+    	dYear: 0,
+    	dMonth: 0
     };
   },
   computed: {
@@ -122,14 +128,20 @@ export default {
   	},
   	cfecha: function(){
   		return this.cYear+'-'+this.cMonth+'-15'
+  	},
+  	dfecha: function(){
+  		if(this.dMonth <10) this.dMonth = '0'+this.dMonth
+  		return this.dYear+'-'+this.dMonth+'-15'
   	}
   },
   mounted(){
   	let hoy = new Date
   	this.year = hoy.getFullYear()
   	this.month = hoy.getMonth() +1
-  	this.cYear = hoy.getFullYear()
-  	this.cMonth = hoy.getMonth() +1
+  	this.cYear = this.year
+  	this.cMonth = this.month
+  	this.dYear = this.year
+  	this.dMonth = this.month
   }
 
 };

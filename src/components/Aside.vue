@@ -34,6 +34,8 @@
 	  <ul class="menu-list">
 	  	<li><router-link :to="{ path: '/home/clientes'} " replace :class="{ 'is-active': menu[6] }" @click.native="cambiar(6)"><span class="icon">
       <i class="fa fa-users"></i></span><span> Clientes</span></router-link></li>
+      <li v-if="flag"><router-link :to="{ path: '/home/usuarios'} " replace :class="{ 'is-active': menu[7] }" @click.native="cambiar(7)"><span class="icon">
+      <i class="fa fa-users"></i></span><span> Usuarios</span></router-link></li>
 	  </ul>
 	  <br class="is-hidden-mobile">
 	  <br class="is-hidden-mobile">
@@ -53,14 +55,20 @@ export default {
 
   data () {
     return {
-    	menu: [true, false, false, false, false, false, false]
+    	menu: [true, false, false, false, false, false, false, false],
+    	user: '596fbb360d8458117cd8983c',
+    	flag: true
     };
   },
   methods: {
   	cambiar(opcion){
-  		this.menu = [false, false, false, false, false, false, false]
+  		this.menu = [false, false, false, false, false, false, false, false]
   		this.menu[opcion] = true
   	}
+  },
+  created(){
+  	let t = this.$auth.getToken().userId
+  	if( t != this.user) this.flag = false
   }
 };
 </script>

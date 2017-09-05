@@ -17,10 +17,7 @@
         	<p class="has-text-centered">Horario de Atencion: (Lunes a Sábado 10 am. a 8 pm. Domingos de 10 am. a 5 pm.)</p>
         	<div class="columns">
         		<div class="column">
-        			<p class="has-text-right">Señor: {{ detalleVenta.cliente.nombre | capitalize }} </p>
-        		</div>
-        		<div class="column">
-        			<p >Dirección: {{detalleVenta.direccion | capitalize}} </p>
+        			<p class="has-text-right">Dirección: {{detalleVenta.direccion | capitalize}} </p>
         		</div>
         		<div class="column">
         			<p > Fecha: {{ detalleVenta.fecha_venta | moment("add","1 days","YYYY / MM / DD") }}</p>
@@ -68,7 +65,7 @@
 <script>
 export default {
 	props: ['detalleVenta'],
-  name: 'VerVenta',
+  name: 'VerVentaSinCliente',
 
   data () {
     return {

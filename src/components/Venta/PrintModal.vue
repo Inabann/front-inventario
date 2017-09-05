@@ -13,15 +13,17 @@
         	<table>
 				    <thead>
 				      <tr>
+				      	<th style="width: 20px;">Cant</th>
 				        <th>Producto</th>
-				        <th>Cantidad</th>
+				        <th>P Unit</th>
 				        <th>Sub Total</th>
 				      </tr>
 				    </thead>
 				    <tbody>
 				      <tr v-for="producto in ventas">
+				      	<td>{{ producto.cantidad }}</td>
 				        <td>{{ producto.modelo +' ' +producto.color +' '+ producto.tipo +' '+ producto.marca  | capitalize }}</td>
-				        <td>{{ producto.cantidad }}</td>
+				        <td>{{ producto.precio_uni }}</td>
 				        <td>{{ producto.sub_total }}</td>
 				      </tr>
 				    </tbody>
@@ -29,9 +31,11 @@
 				    	<tr>
 				    		<th></th>
 				    		<th>Costo Envio</th>
+				    		<th></th>
 				    		<th>{{ detalleVenta.costo_envio }}</th>
 				    	</tr>
 					    <tr>
+					      <th></th>
 					      <th></th>
 					      <th><abbr title="Played">Total:</abbr></th>
 					      <th>{{ total }}</th>
@@ -65,7 +69,8 @@ export default {
 	},
 	methods:{
 		setDV(){
-			this.detalleVenta.total = this.total		
+			this.detalleVenta.total = this.total
+			this.detalleVenta.usuarioId = this.$auth.getToken().userId		
 		},
 		setTotal(){
 			this.ventas.forEach(producto => {
@@ -90,8 +95,9 @@ export default {
 		  	colorsId : venta.color,
 			  marcasId: venta.marca,
 			  tiposId: venta.tipo,
-			  subtotal: 10,
-			  cantidad: venta.cantidad
+			  subtotal: venta.sub_total,
+			  cantidad: venta.cantidad,
+			  precio_uni: venta.precio_uni
 		  }
 			newVenta.detalleVentaId = this.dvId
 			newVenta.fecha_venta = this.detalleVenta.fecha_venta
