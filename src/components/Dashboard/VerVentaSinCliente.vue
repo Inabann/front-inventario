@@ -13,7 +13,7 @@
         			<h3 ><strong>Nota de Pedido</strong></h3>
         		</div>
         	</div>
-        	<p class="has-text-centered">Av. Argentina 458 - Int. <strong>B-70</strong> Mesa Redonda - Lima <span class="icon is-small is-success"><i class="fa fa-whatsapp"></i></span> <strong>927791715</strong></p>
+        	<p class="has-text-centered">Av. Argentina 458 - Int. <strong>B-70-71 G-84</strong> Mesa Redonda - Lima <span class="icon is-small is-success"><i class="fa fa-whatsapp"></i></span> <strong>927791715</strong></p>
         	<p class="has-text-centered">Horario de Atencion: (Lunes a Sábado 10 am. a 8 pm. Domingos de 10 am. a 5 pm.)</p>
         	<div class="columns">
         		<div class="column">

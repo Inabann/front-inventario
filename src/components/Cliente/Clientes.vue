@@ -29,6 +29,9 @@
         <b-table-column field="nombre" label="Nombres y Apellidos" sortable>
           {{ props.row.nombre | capitalize }}
         </b-table-column>
+        <b-table-column field="direccion" label="Dirección" sortable>
+          {{ props.row.direccion | capitalize }}
+        </b-table-column>
         <b-table-column field="telefono" label="Numero Contacto" sortable>
           {{ props.row.telefono }}
         </b-table-column>

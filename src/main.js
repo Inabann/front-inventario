@@ -40,7 +40,14 @@ router.beforeEach(
 					next('/')
 				}
 			} else{
-				next()
+				if(to.path == '/home/reportes' || to.path == '/home/clientes' || to.path == '/home/productos' || to.path == '/home/stock' || to.path == '/home/usuarios'){
+					//cambiar al id del admin/almacen
+					if(Vue.auth.getToken().userId != '596fbb360d8458117cd8983c'){
+						next('/home/dashboard')
+					}
+				} else {
+					next()
+				}
 			}
 		} else {
 			next()

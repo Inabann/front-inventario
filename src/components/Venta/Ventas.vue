@@ -1,13 +1,29 @@
 <template>
 <div class="container">
 	<h1 class="title is-3 has-text-centered"><span class="has-text-info">Registro de Ventas Realizadas</span></h1>
-  <div class="field is-grouped is-grouped-right">
-    <p class="control"><input type="number" class="input" v-model="year" style="width: 70px" min="2017"></p>
-    <p class="control"><input type="number" class="input" v-model="month" style="width: 60px" min="1" max="12"></p> 
-    <JsonExcel class="button is-primary" :data="json_data" :fields="json_fields" name="filename.xls">Generar Excel</JsonExcel>
+  <div class="columns">
+    <div class="column">
+      <b-field grouped>
+        <b-input placeholder="por filial..." type="search" icon-pack="fa" icon="search" v-model="filter" class="inputBusqueda"></b-input>
+        <b-input placeholder="...aaaa-mm-dd" type="search" icon-pack="fa" icon="search" v-model="filter2" class="inputBusqueda"></b-input>
+      </b-field>
+      
+    </div>
+    <div class="column">
+      <div class="field is-grouped is-grouped-right">
+        <p class="control"><input type="number" class="input" v-model="year" style="width: 70px" min="2017"></p>
+        <p class="control"><input type="number" class="input" v-model="month" style="width: 60px" min="1" max="12"></p> 
+        <JsonExcel class="button is-primary" :data="json_data" :fields="json_fields" name="filename.xls">Generar Excel</JsonExcel>
+      </div>
+    </div>
   </div>
-	<b-table :data="ventas" :mobile-cards="true" :paginated="true" :per-page="10" >
+
+  
+	<b-table :data="buscar" :mobile-cards="true" :paginated="true" :per-page="10" >
     <template scope="props">
+      <b-table-column field="usuario.username" label="Filial" sortable>
+        {{ props.row.usuario.username | capitalize }}
+      </b-table-column>
     	<b-table-column field="fecha_venta" label="F. Venta" sortable>
         <span class="tag is-success">
           <!-- {{ new Date(props.row.fecha_ingreso).toLocaleDateString() }} -->
@@ -65,7 +81,10 @@ export default {
     	ventas: [],
       year: 0,
       month: 0,
+      filter: '',
+      filter2: '',
       json_fields : {
+        filial: 'String',
         fecha: 'String',
         dni_ruc: 'String',
         cliente: 'String',
@@ -85,7 +104,7 @@ export default {
   },
   methods: {
   	getVentas(){
-  		this.$http.get('/api/DetalleVenta?filter=%7B%22order%22%3A%22fecha_venta%20DESC%22%2C%22include%22%3A%22cliente%22%7D').then(res => this.ventas = res.body).catch(err => console.log(err))
+  		this.$http.get('/api/DetalleVenta?filter=%7B%22order%22%3A%22fecha_venta%20DESC%22%2C%22include%22%3A%5B%22cliente%22%2C%22usuario%22%5D%7D').then(res => this.ventas = res.body).catch(err => console.log(err))
   	},
     generarExcel(){
       this.json_data = []
@@ -95,6 +114,7 @@ export default {
         lista.forEach(item => {
           if(flag != item.id){
             this.json_data.push({
+              filial: item.usuario.username,
               fecha: item.fecha_venta.slice(0,10),
               dni_ruc: item.cliente.dni_ruc,
               cliente: item.cliente.nombre,
@@ -110,6 +130,7 @@ export default {
               total: item.total
             })
             this.json_data.push({
+              filial:  ' ',
               fecha: ' ',
               dni_ruc: ' ',
               cliente: ' ',
@@ -127,6 +148,7 @@ export default {
             flag = item.id
           } else{
             this.json_data.push({
+              filial: ' ',
               fecha: ' ',
               dni_ruc: ' ',
               cliente: ' ',
@@ -156,6 +178,13 @@ export default {
     },
     month: function(value){
       this.generarExcel()
+    }
+  },
+  computed: {
+    buscar: function(){
+      return this.ventas.filter((venta) => {
+        return venta.usuario.username.match(this.filter.toLowerCase()) && venta.fecha_venta.match(this.filter2.toLowerCase());
+      });
     }
   }
 };

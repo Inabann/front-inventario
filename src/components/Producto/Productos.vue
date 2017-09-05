@@ -18,6 +18,7 @@
     <b-field>
     <a class="button is-info" @click="buscar = !buscar"><span class="icon is-small"><i class="fa fa-search"></i></span></a>
     <b-field grouped v-if="buscar">
+      <b-input placeholder="por filial..." type="search" icon-pack="fa" icon="search" v-model="ffilter" class="inputBusqueda"></b-input>
       <b-input placeholder="por modelos..." type="search" icon-pack="fa" icon="search" v-model="filter" class="inputBusqueda"></b-input>
       <b-input placeholder="por color..." type="search" icon-pack="fa" icon="search" v-model="fColor" class="inputBusqueda"></b-input>
       <b-input placeholder="por marca..." type="search" icon-pack="fa" icon="search" v-model="fMarca" class="inputBusqueda"></b-input>
@@ -27,7 +28,10 @@
     </b-field>
     <b-table :data="filteredProductos" :mobile-cards="true" :paginated="true" :per-page="10" >
     <template scope="props">
-      <b-table-column field="modelosId" label="Modelo"  sortable>
+      <b-table-column field="usuario.username" label="Filial" sortable>
+        {{ props.row.usuario.username | capitalize }}
+      </b-table-column>
+      <b-table-column field="modelosId" label="Modelo" sortable>
         {{ props.row.modelosId | capitalize }}
       </b-table-column>
       <b-table-column field="colorsId" label="Color" sortable>
@@ -75,6 +79,7 @@ export default {
     return {
       productos: [],
       filter: '',
+      ffilter:'',
       fMarca: '',
       fColor: '',
       fTipo: '',
@@ -87,7 +92,7 @@ export default {
   methods:{
      getProductos(){
       //url con include ?filter[include]=tipos&filter[include]=modelos&filter[include]=colors&filter[include]=modelos&filter[include]=marcas
-      this.$http.get('/api/Productos?filter[order]=fecha_ingreso%20DESC&').then((res) => { //productos ordenados de forma descendente
+      this.$http.get('/api/Productos?filter=%7B%22order%22%3A%22fecha_ingreso%20DESC%22%2C%20%22include%22%3A%22usuario%22%7D').then((res) => { //productos ordenados de forma descendente
         let vm = this
         vm.productos = res.body
       })
@@ -114,7 +119,7 @@ export default {
   computed: {
     filteredProductos: function(){
       return this.productos.filter((producto) => {
-        return producto.modelosId.match(this.filter.toLowerCase()) && producto.marcasId.match(this.fMarca.toLowerCase()) && producto.colorsId.match(this.fColor.toLowerCase()) && producto.tiposId.match(this.fTipo.toLowerCase());
+        return producto.modelosId.match(this.filter.toLowerCase()) && producto.marcasId.match(this.fMarca.toLowerCase()) && producto.colorsId.match(this.fColor.toLowerCase()) && producto.tiposId.match(this.fTipo.toLowerCase()) && producto.usuario.username.match(this.ffilter.toLowerCase());
       });
     }
   },

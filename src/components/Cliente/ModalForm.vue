@@ -14,6 +14,10 @@
         <b-input type="text" v-model="cliente.nombre" placeholder="Nombres y Apellidos" minlength="5" required>
         </b-input>
       </b-field>
+      <b-field label="Dirección">
+        <b-input type="text" v-model="cliente.direccion" placeholder="Dirección" >
+        </b-input>
+      </b-field>
       <b-field label="Numero de Contacto">
         <b-input type="text" v-model="cliente.telefono" placeholder="Celular/Telefono" minlength="6" required></b-input>
       </b-field>
@@ -33,7 +37,8 @@
         cliente: {
           dni_ruc: '',
           nombre: '',
-          telefono: ''
+          telefono: '',
+          direccion: ''
         }
       }
     },

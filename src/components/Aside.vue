@@ -6,14 +6,14 @@
  <ul class="menu-list">
 	   <router-link :to="{ path: '/home/dashboard' }" tag="li" replace @click.native="cambiar(0)"><a :class="{ 'is-active': menu[0] }"><span class="icon">
       <i class="fa fa-tachometer"></i></span><span> Dashboard</span></a></router-link>
-		 <router-link :to="{ path: '/home/reportes' }" tag="li" replace @click.native="cambiar(1)"><a :class="{ 'is-active': menu[1] }"><span class="icon">
+		 <router-link :to="{ path: '/home/reportes' }" tag="li" replace @click.native="cambiar(1)" v-if="flag"><a :class="{ 'is-active': menu[1] }"><span class="icon">
       <i class="fa fa-bar-chart"></i></span><span> Reportes</span></a></router-link>
 	  </ul>
-	  <p class="menu-label">
+	  <p class="menu-label" v-if="flag">
 	    <span >Inventario</span>
 	  </p>
-	  <ul class="menu-list">
-	    <li ><router-link :to="{ path: '/home/productos'} " replace :class="{ 'is-active': menu[2] }" @click.native="cambiar(2)"><span class="icon">
+	  <ul class="menu-list" v-if="flag">
+	    <li ><router-link :to="{ path: '/home/productos'} " replace :class="{ 'is-active': menu[2] }" @click.native="cambiar(2)" ><span class="icon">
       <i class="fa fa-cubes"></i></span><span> Producto</span></router-link></li>
 	    <li><router-link :to="{ path: '/home/stock'} " replace :class="{ 'is-active': menu[3] }" @click.native="cambiar(3)"><span class="icon">
       <i class="fa fa-tags"></i></span><span> Stock</span></router-link></li>
@@ -28,13 +28,13 @@
 	   	<li ><router-link :to="{ path: '/home/ventas'} " replace :class="{ 'is-active': menu[5] }" @click.native="cambiar(5)"><span class="icon">
       <i class="fa fa-book"></i></span><span > Registro</span></router-link></li>
 	  </ul>
-	  <p class="menu-label">
+	  <p class="menu-label" v-if="flag">
 	  	<span>Cliente</span>
 	  </p>
-	  <ul class="menu-list">
+	  <ul class="menu-list" v-if="flag">
 	  	<li><router-link :to="{ path: '/home/clientes'} " replace :class="{ 'is-active': menu[6] }" @click.native="cambiar(6)"><span class="icon">
       <i class="fa fa-users"></i></span><span> Clientes</span></router-link></li>
-      <li v-if="flag"><router-link :to="{ path: '/home/usuarios'} " replace :class="{ 'is-active': menu[7] }" @click.native="cambiar(7)"><span class="icon">
+      <li><router-link :to="{ path: '/home/usuarios'} " replace :class="{ 'is-active': menu[7] }" @click.native="cambiar(7)"><span class="icon">
       <i class="fa fa-users"></i></span><span> Usuarios</span></router-link></li>
 	  </ul>
 	  <br class="is-hidden-mobile">

@@ -83,7 +83,8 @@ export default {
         cantidad: '',
         cantidad_res: '',
         precio_uni: '',
-        fecha_ingreso: ''
+        fecha_ingreso: '',
+        usuarioId: ''
       }
     }
   },
@@ -109,9 +110,9 @@ export default {
     }
   },
     created: function(){
+      this.producto.usuarioId = this.$auth.getToken().userId
       if(this.sendProducto){
         this.producto = this.sendProducto
-
       }
     }
 }
