@@ -10,7 +10,7 @@
       
     </div>
     <div class="column">
-      <div class="field is-grouped is-grouped-right">
+      <div class="field is-grouped is-grouped-right" v-if="this.$auth.getToken().userId == '596fbb360d8458117cd8983c'">
         <p class="control"><input type="number" class="input" v-model="year" style="width: 70px" min="2017"></p>
         <p class="control"><input type="number" class="input" v-model="month" style="width: 60px" min="1" max="12"></p> 
         <JsonExcel class="button is-primary" :data="json_data" :fields="json_fields" name="filename.xls">Generar Excel</JsonExcel>
@@ -104,7 +104,11 @@ export default {
   },
   methods: {
   	getVentas(){
-  		this.$http.get('/api/DetalleVenta?filter=%7B%22order%22%3A%22fecha_venta%20DESC%22%2C%22include%22%3A%5B%22cliente%22%2C%22usuario%22%5D%7D').then(res => this.ventas = res.body).catch(err => console.log(err))
+      if(this.$auth.getToken().userId != '596fbb360d8458117cd8983c'){
+  		  this.$http.get('/api/DetalleVenta?filter=%7B%22order%22%3A%22fecha_venta%20DESC%22%2C%22include%22%3A%5B%22cliente%22%2C%22usuario%22%5D%2C%22where%22%3A%7B%22usuarioId%22%3A%22'+this.$auth.getToken().userId+'%22%7D%7D').then(res => this.ventas = res.body).catch(err => console.log(err))
+      } else{
+        this.$http.get('/api/DetalleVenta?filter=%7B%22order%22%3A%22fecha_venta%20DESC%22%2C%22include%22%3A%5B%22cliente%22%2C%22usuario%22%5D%7D').then(res => this.ventas = res.body).catch(err => console.log(err))
+      }
   	},
     generarExcel(){
       this.json_data = []

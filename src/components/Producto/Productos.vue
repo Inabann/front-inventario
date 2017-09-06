@@ -44,9 +44,12 @@
         {{ props.row.tiposId | capitalize }}
       </b-table-column>
       <b-table-column field="cantidad" label="Cantidad" numeric sortable>
-        {{ props.row.cantidad | capitalize }}
+        {{ props.row.cantidad }}
       </b-table-column>
-      <b-table-column field="precio_uni" label="Precio" numeric>
+      <b-table-column field="sub_total" label="P Uni" numeric>
+        {{ props.row.sub_total }}
+      </b-table-column>
+      <b-table-column field="precio_uni" label="Total" numeric>
         {{ props.row.precio_uni }}
       </b-table-column>
       <b-table-column field="fecha_ingreso" label="F. Ingreso" sortable>
@@ -54,6 +57,9 @@
           <!-- {{ new Date(props.row.fecha_ingreso).toLocaleDateString() }} -->
           {{ props.row.fecha_ingreso | moment("add","1 days","YYYY / MM / DD") }}
         </span>
+      </b-table-column>
+      <b-table-column field="cantidad_res" label="Stock" numeric>
+        {{ props.row.cantidad_res }}
       </b-table-column>
       <b-table-column label="Opciones" >
         <a class="button is-danger is-small" @click="remove(props.row)" >Eliminar</a>

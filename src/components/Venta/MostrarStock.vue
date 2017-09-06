@@ -171,7 +171,7 @@ export default {
 
   	//opciones de los select
   	getStock(){
-  		this.$http.post('/api/Productos/stock').then( (res) => {
+  		this.$http.post('/api/Productos/stockPorUsuario',{userId: this.$auth.getToken().userId}).then( (res) => {
   			this.stock = res.body;
   		})
   	},

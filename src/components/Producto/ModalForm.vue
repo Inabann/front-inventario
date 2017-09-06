@@ -27,24 +27,32 @@
       </div> 
      
       <div class="columns">
-        <div class="column is-4">
+        <div class="column is-2">
           <div class="field">
             <label class="label">Cantidad</label>
             <div class="control">
               <input class="input" type="number" placeholder="Cantidad" v-model="producto.cantidad">
             </div>
           </div>
-          
         </div>
-        <div class="column is-4">
+        <div class="column is-2">
           <div class="field">
-            <label class="label">Precio</label>
+            <label class="label">Precio Unitario</label>
             <div class="control">
-              <input class="input" type="number" placeholder="Precio" v-model="producto.precio_uni">
+              <input class="input" type="number" placeholder="Precio Unitario" v-model="producto.sub_total">
             </div>
           </div>
         </div>
-        <div class="column is-4">
+        <div class="column is-2">
+          <div class="field">
+            <label class="label">Total</label>
+            <!-- <div class="control">
+              <input class="input" type="number" placeholder="Precio Total" v-model="producto.precio_uni" disabled>
+            </div> -->
+            <p>s/. {{ total }}</p>
+          </div>
+        </div>
+        <div class="column is-3">
           <div class="field">
             <label class="label">Filial</label>
             <b-select placeholder="Seleccione filial" v-model="producto.usuarioId">
@@ -94,7 +102,8 @@ export default {
         cantidad_res: '',
         precio_uni: '',
         fecha_ingreso: '',
-        usuarioId: ''
+        usuarioId: '',
+        sub_total: ''
       },
       usuarios: []
     }
@@ -103,6 +112,7 @@ export default {
     saveProducto(){
       if(this.sendProducto){
         let index = this.productos.indexOf(this.sendProducto)
+        this.producto.precio_uni = this.total
         this.$http.put('/api/Productos/'+this.producto.id, this.producto).then(res => {
           this.productos[index] = res.body
           this.$emit('newList', this.productos)
@@ -111,6 +121,7 @@ export default {
         })
       } else {
         this.producto.cantidad_res = this.producto.cantidad;
+        this.producto.precio_uni = this.total
         this.$http.post('/api/Productos', this.producto).then(res => {
           this.productos.unshift(res.body)
           this.$emit('newList', this.productos)
@@ -123,12 +134,17 @@ export default {
       this.$http.get('/api/usuarios?access_token='+this.$auth.getToken().token).then(res => this.usuarios = res.body)
     }
   },
-    created: function(){
-      if(this.sendProducto){
-        this.producto = this.sendProducto
-      }
-      this.getFilial()
+  created: function(){
+    if(this.sendProducto){
+      this.producto = this.sendProducto
     }
+    this.getFilial()
+  },
+  computed: {
+    total: function(){
+      return Number(this.producto.cantidad) * Number(this.producto.sub_total)
+    }
+  }
 }
 </script>
 
