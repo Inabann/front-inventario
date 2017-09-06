@@ -13,22 +13,19 @@
          <InputModelo :atrib="'Modelos'" @getId="producto.modelosId = $event" id="modelo"></InputModelo>
        </div>
        <div class="column is-3">
-       <label for="tipo" class="label">Tipo</label>
-         <InputModelo :atrib="'Tipos'" @getId="producto.tiposId = $event" id="tipo"></InputModelo>
-       </div>
-       <div class="column is-3">
           <label class="label" for="color">Color</label>
          <InputModelo :atrib="'Colors'" @getId="producto.colorsId = $event" id="color"></InputModelo>
        </div>
        <div class="column is-3">
+       <label for="tipo" class="label">Tipo</label>
+         <InputModelo :atrib="'Tipos'" @getId="producto.tiposId = $event" id="tipo"></InputModelo>
+       </div>
+       <div class="column is-3">
           <label for="marca" class="label">Marca</label>
-      <InputModelo :atrib="'Marcas'" @getId="producto.marcasId = $event" id="marca"></InputModelo>
+          <InputModelo :atrib="'Marcas'" @getId="producto.marcasId = $event" id="marca"></InputModelo>
        </div>   
       </div> 
-
-      <!-- <label for="marca" class="label">Marca</label>
-      <InputModelo :atrib="'Marcas'" @getId="producto.marcasId = $event" id="marca"></InputModelo> -->
-      
+     
       <div class="columns">
         <div class="column is-4">
           <div class="field">
@@ -45,6 +42,19 @@
             <div class="control">
               <input class="input" type="number" placeholder="Precio" v-model="producto.precio_uni">
             </div>
+          </div>
+        </div>
+        <div class="column is-4">
+          <div class="field">
+            <label class="label">Filial</label>
+            <b-select placeholder="Seleccione filial" v-model="producto.usuarioId">
+              <option
+                  v-for="option in usuarios"
+                  :value="option.id"
+                  :key="option.id">
+                  {{ option.username }}
+              </option>
+            </b-select>
           </div>
         </div>
       </div>
@@ -85,7 +95,8 @@ export default {
         precio_uni: '',
         fecha_ingreso: '',
         usuarioId: ''
-      }
+      },
+      usuarios: []
     }
   },
   methods: {
@@ -107,13 +118,16 @@ export default {
           this.$toast.open({message:'Producto guardado',type: 'is-success'})
         })
       }
+    },
+    getFilial(){
+      this.$http.get('/api/usuarios?access_token='+this.$auth.getToken().token).then(res => this.usuarios = res.body)
     }
   },
     created: function(){
-      this.producto.usuarioId = this.$auth.getToken().userId
       if(this.sendProducto){
         this.producto = this.sendProducto
       }
+      this.getFilial()
     }
 }
 </script>
@@ -121,6 +135,6 @@ export default {
 
 <style scoped>
 .modal-card {
-  width: auto;
+  width: 1000px;
 }
 </style>
