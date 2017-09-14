@@ -116,7 +116,7 @@ export default {
         let lista = res.body
         let flag = 'asdasd'
         lista.forEach(item => {
-          if(flag != item.id){
+          if(flag != item._id){
             this.json_data.push({
               filial: item.usuario.username,
               fecha: item.fecha_venta.slice(0,10),
@@ -149,7 +149,7 @@ export default {
               subtotal: item.productos.subtotal,
               total: ' '
             })
-            flag = item.id
+            flag = item._id
           } else{
             this.json_data.push({
               filial: ' ',

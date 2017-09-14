@@ -99,8 +99,7 @@ export default {
      getProductos(){
       //url con include ?filter[include]=tipos&filter[include]=modelos&filter[include]=colors&filter[include]=modelos&filter[include]=marcas
       this.$http.get('/api/Productos?filter=%7B%22order%22%3A%22fecha_ingreso%20DESC%22%2C%20%22include%22%3A%22usuario%22%7D').then((res) => { //productos ordenados de forma descendente
-        let vm = this
-        vm.productos = res.body
+        this.productos = res.body
       })
     },
 

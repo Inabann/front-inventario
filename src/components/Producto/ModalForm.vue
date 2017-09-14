@@ -123,10 +123,14 @@ export default {
         this.producto.cantidad_res = this.producto.cantidad;
         this.producto.precio_uni = this.total
         this.$http.post('/api/Productos', this.producto).then(res => {
-          this.productos.unshift(res.body)
-          this.$emit('newList', this.productos)
-          this.$parent.close()
-          this.$toast.open({message:'Producto guardado',type: 'is-success'})
+          this.$http.get('/api/usuarios/'+this.producto.usuarioId+'?access_token='+this.$auth.getToken().token).then( response => {
+            res.body.usuario = response.body
+            this.productos.unshift(res.body)
+            this.$emit('newList', this.productos)
+            this.$parent.close()
+            this.$toast.open({message:'Producto guardado',type: 'is-success'})
+          })
+          
         })
       }
     },
